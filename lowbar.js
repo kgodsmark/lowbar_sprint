@@ -1,6 +1,6 @@
-var _ = {};
+const _ = {};
 
-_.identity = function() {
+_.identity = function () {
   // your code here 
 };
 

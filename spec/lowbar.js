@@ -9,6 +9,7 @@ describe('_', function () {
   it('is an object', function () {
     expect(_).to.be.an('object');
   });
+
   describe('#identity', function () {
     it('is a function', function() {
       expect(_.identity).to.be.a('function');
