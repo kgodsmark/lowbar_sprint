@@ -1,4 +1,4 @@
-# Lowbar Part 1
+# Lowbar I - Arrays and Objects
 
 ## Goals
 
@@ -7,39 +7,11 @@ tools you'll be using to do it from now until the end of the course (and beyond)
 2. Get an 'inside view' of one of the most heavily used JavaScript libraries
 [underscore](http://underscorejs.org/) (11m downloads on NPM last month) and
 get used to reading its API documentation.
-3. Become accustomed to using [NPM](https://www.npmjs.com/) to find and install
-JS libraries
-4. Learn to effectively pair program and use Git/Github as a collaboration tool.
-5. Lay the foundations for understanding the functional style of programming that JS lends itself so well to
-
-## Workflow
-
-A key requirement for this sprint is to get used to collaborating on a codebase using git and Github. The workflow we will be using is as follows:
-
-1. To begin, person A in the pair should fork and clone the project. They should add their pair as a collaborator on the project. (Settings --> Collaborators & teams --> Add Collaborator)
-2. The other person (person B) should navigate to their pair's fork (e.g. githubUserA's fork will be located at: https://github.com/githubUserA/wk01-lowbar) and should clone githubUserA's repository.
-3. Both pairs will be working on **the same codebase**, i.e. code that lives in person A's repository. To avoid merge conflicts, you should avoid both working on your copies of the code at the same time and should be rigorous about sticking to the 'driving and navigating' model of pair programming.
-4. After every successful piece of functionality, the driver should add, commit and push their work. Use neat, uniformly formatted commit messages and never commit code that isn't working!
-
-  `$ git add lowbar.js`
-
-  `$ git add spec/lowbar.spec.js`
-
-  `$ git commit -m '[_.map] maps an array'`
-
-  `$ git push origin master`
-
-5. Then switch the driver and the navigator. The new driver, working on their own machine, should make sure their codebase is up to date by pulling:
-
-  `$ git pull origin master`
-
-6. The driver types until the next test is passing, at which point the adding, committing, pushing, switching and pulling process is repeated.
-
----
+3. Lay the foundations for understanding the functional style of programming that JS lends itself so well to.
 
 ## Tasks
 
-The Lowbar Sprint involves reimplementing a JS library as if you were its author. For Part 1 of this sprint (we'll be coming back to this in week 2), you'll need to reimplement the following methods:
+On this sprint we'll implement our own version of the popular utilities library Underscore.js. The methods you should implement are listed below, but feel free to implement any others you find interesting if you finish.
 
 ## Core
 
