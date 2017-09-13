@@ -18,15 +18,16 @@ On this sprint we'll implement our own version of the popular utilities library 
 These are the core functions you should aim to get finished;
 
 1. identity
-2. first
-3. last
-4. each
-5. indexOf
-6. filter
-7. reject
-8. uniq
-9. map
-10. contains
+2. values
+3. first
+4. last
+5. each
+6. indexOf
+7. filter
+8. reject
+9. uniq
+10. map
+11. contains
 
 You should be heavily referencing the APIs of the following;
 
