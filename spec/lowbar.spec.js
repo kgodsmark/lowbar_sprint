@@ -42,4 +42,10 @@ describe('lowbar', function () {
     });
   });
 
+  describe('_.first', function () {
+    it('is a function', function() {
+      expect(_.first).to.be.a('function');
+    });
+  });
+
 });

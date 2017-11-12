@@ -14,4 +14,8 @@ _.values = function (object) {
   return result;
 };
 
+_.first = function () {
+
+};
+
 module.exports = _;
