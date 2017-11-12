@@ -46,6 +46,12 @@ describe('lowbar', function () {
     it('is a function', function() {
       expect(_.first).to.be.a('function');
     });
+    it('returns the first element of an array. ', function() {
+      expect(_.first([5, 4, 3, 2, 1])).to.equal(5);
+      expect(_.first(['a','b','c'])).to.equal('a');
+      expect(_.first([['first','array'],['second','array']])).to.eql(['first','array']);
+      expect(_.first([{a:'first',b:'object'},{a: 'second',b: 'object'}])).to.eql({a:'first',b:'object'});
+    });
   });
 
 });

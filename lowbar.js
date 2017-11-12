@@ -14,8 +14,8 @@ _.values = function (object) {
   return result;
 };
 
-_.first = function () {
-
+_.first = function (array, n = 0) {
+  return array[n];
 };
 
 module.exports = _;
