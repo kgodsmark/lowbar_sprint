@@ -76,8 +76,13 @@ _.filter = function (list, predicate) {
   return filteredList;
 };
 
-_.reject = function () {
-
+_.reject = function (list, predicate) {
+  if(!predicate) return list;
+  const filteredList = [];
+  _.each(list, (item) => {
+    if (!predicate(item)) filteredList.push(item);
+  });
+  return filteredList;
 };
 
 module.exports = _;

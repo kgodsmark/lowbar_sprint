@@ -200,7 +200,7 @@ describe('lowbar', function () {
       expect(_.filter({a: 1, b: 2, c: 3}, isEven)).to.eql([2]);
       expect(_.filter([1, 2, 3, 4, 5, 12], isLarge)).to.eql([12]);
       expect(_.filter('lemon', isE)).to.eql(['e']);
-      expect(_.filter(['p', 'o', 'o', 'p'], isE)).to.eql([]);
+      expect(_.filter(['f', 'i', 'g'], isE)).to.eql([]);
       expect(_.filter(['p', 'e', 'o', 'p', 'l', 'e'], isE)).to.eql(['e', 'e']);
     });
     it('returns an empty array if none of the values pass the predicate', function () {
@@ -217,8 +217,20 @@ describe('lowbar', function () {
   });
 
   describe('_.reject', function () {
+    const isEven = item => item % 2 === 0;
+    const isLarge = item => item > 10;
+    const isE = item => item === 'e';
+
     it('is a function', function () {
       expect(_.reject).to.be.a('function');
+    });
+    it('returns an array of all the values which don\'t pass the predicate', function () {
+      expect(_.reject([1, 2, 3, 4, 5, 6], isEven)).to.eql([1, 3, 5]);
+      expect(_.reject({a: 1, b: 2, c: 3}, isEven)).to.eql([1, 3]);
+      expect(_.reject([1, 2, 3, 4, 5, 12], isLarge)).to.eql([1, 2, 3, 4, 5]);
+      expect(_.reject('lemon', isE)).to.eql(['l', 'm', 'o', 'n']);
+      expect(_.reject(['f', 'i', 'g'], isE)).to.eql(['f', 'i', 'g']);
+      expect(_.reject(['p', 'e', 'o', 'p', 'l', 'e'], isE)).to.eql(['p', 'o',  'p', 'l']);
     });
   });
 
