@@ -194,6 +194,9 @@ describe('lowbar', function () {
     it('returns an array of all the values which pass the predicate', function () {
       expect(_.filter([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; })).to.eql([2, 4, 6]);
     });
+    it('returns an empty array if none of the values pass the predicate', function () {
+      expect(_.filter([1, 2, 3, 4, 5, 6], function(num){ return num > 10; })).to.eql([]);
+    });
   });
 
 });
