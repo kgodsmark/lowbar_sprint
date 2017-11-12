@@ -50,15 +50,19 @@ _.indexOf = function (array, value, isSorted = false) {
   return -1;
 };
 
-function binarySearch(array, value) {
-  let mid = Math.floor((array.length) / 2);
-  if (array[mid] === value) {
-    return mid;
-  } else if (array[mid] < value && array.length > 1) {
-    return binarySearch(array.splice(mid, array.length - 1), value);
-  } else if (array[mid] > value && array.length > 1) {
-    return binarySearch(array.splice(0, mid), value);
-  } else return -1;
+function binarySearch(array, value, start, end) {
+  start = start || 0;
+  end = end || array.length;
+  let index = Math.floor((start + end) / 2);
+  if (start > end || start === end || end < start) return -1;
+
+  if (value === array[index]) {
+    return index;
+  } else if (value < array[index]) {
+    return binarySearch(array, value, start, index - 1);
+  } else if (value > array[index]) {
+    return binarySearch(array, value, index + 1, end);
+  }
 }
 
 module.exports = _;

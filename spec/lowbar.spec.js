@@ -165,6 +165,14 @@ describe('lowbar', function () {
     it('returns -1 if not found in the array', function () {
       expect(_.indexOf([1, 2, 3], 4)).to.equal(-1);
     });
+    it('using the binary search it returns the correct output', function () {
+      expect(_.indexOf([1, 2, 3, 4, 5, 6 ,7], 2, true)).to.equal(1);
+      expect(_.indexOf([1, 2, 3, 4, 5, 6 ,7], 7, true)).to.equal(6);
+      expect(_.indexOf([1, 2, 3, 4, 5, 6 ,7], 4, true)).to.equal(3);
+      expect(_.indexOf([1, 2, 3, 4, 5, 6 ,7], 10, true)).to.equal(-1);
+      expect(_.indexOf([1, 2, 10, 4, 11, 6 ,7], 3, true)).to.equal(-1);
+      expect(_.indexOf([7, 6, 5,4, 3, 2 ,1], 7, true)).to.equal(-1);
+    });
   });
 
 });
