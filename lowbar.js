@@ -40,8 +40,8 @@ _.each = function (list, iteratee) {
 
 _.indexOf = function (array, value, isSorted = false) {
   if (array.length) {
-    if (isSorted) return binarySearch(array, value);
-    for (let i = 0; i < array.length; i++) {
+    if (isSorted === true) return binarySearch(array, value);
+    for (let i = 0 || isSorted; i < array.length; i++) {
       if (array[i] === value) {
         return i;
       }
@@ -64,5 +64,6 @@ function binarySearch(array, value, start, end) {
     return binarySearch(array, value, index + 1, end);
   }
 }
+
 
 module.exports = _;

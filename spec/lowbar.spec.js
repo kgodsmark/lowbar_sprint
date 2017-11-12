@@ -173,6 +173,9 @@ describe('lowbar', function () {
       expect(_.indexOf([1, 2, 10, 4, 11, 6 ,7], 3, true)).to.equal(-1);
       expect(_.indexOf([7, 6, 5,4, 3, 2 ,1], 7, true)).to.equal(-1);
     });
+    it('returns the value found starting at the index passed', function () {
+      expect(_.indexOf([1, 2, 4,4 ,5, 4], 4, 3)).to.equal(3);
+    });
   });
 
 });
