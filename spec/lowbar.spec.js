@@ -187,4 +187,10 @@ describe('lowbar', function () {
     });
   });
 
+  describe('_.filter', function () {
+    it('is a function', function () {
+      expect(_.filter).to.be.a('function');
+    });
+  });
+
 });

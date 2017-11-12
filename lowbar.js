@@ -67,5 +67,9 @@ function binarySearch(array, value, start, end) {
   }
 }
 
+_.filter = function () {
+
+};
+
 
 module.exports = _;
