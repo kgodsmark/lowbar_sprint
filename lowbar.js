@@ -14,10 +14,20 @@ _.values = function (object) {
   return result;
 };
 
-_.first = function (array, n) {
-  if(arguments.length === 1) return array[0];
-  if (n === 1) { return array.slice(0, n); }
-  return array.slice(0, n);
+_.first = function (item, n) {
+  // for arrays and strings
+  if (Array.isArray(item) || typeof item === 'string') {
+    if (arguments.length === 1) return item[0];
+
+    let result = [];
+    for (let i = 0; i < n; i++) {
+      result.push(item[i]);
+    }
+    return result;
+  } else {
+    // for all other input types
+    if (arguments.length === 2) return [];
+  }
 };
 
 module.exports = _;

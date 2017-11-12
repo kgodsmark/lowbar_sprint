@@ -58,11 +58,24 @@ describe('lowbar', function () {
       expect(_.first([['first','array'],['second','array']], 1)).to.eql([['first','array']]);
       expect(_.first([{a:'first',b:'object'},{a: 'second',b: 'object'}],1)).to.eql([{a:'first',b:'object'}]);
     });
-    it('returns no elements of an array if zero passed', function() {
+    it('returns no elements of an array/string if zero passed', function() {
       expect(_.first([5, 4, 3, 2, 1], 0)).to.eql([]);
       expect(_.first(['a','b','c'], 0)).to.eql([]);
       expect(_.first([['first','array'],['second','array']], 0)).to.eql([]);
       expect(_.first([{a:'first',b:'object'},{a: 'second',b: 'object'}],0)).to.eql([]);
+      expect(_.first('hello', 0)).to.eql([]);
+    });
+    it('returns the first element of a string if no number passed ', function() {
+      expect(_.first('hello')).to.eql('h');
+    });
+    it('returns the first n elements of a string of the number passed ', function() {
+      expect(_.first('hello', 3)).to.eql(['h', 'e', 'l']);
+    });
+    it('doesn\'t pass with arrays and strings', function() {
+      expect(_.first({a: 'hi', b: 'again'}, 1)).to.eql([]);
+      expect(_.first({a: 'hi', b: 'again'})).to.equal(undefined);
+      expect(_.first(2,1)).to.eql([]);
+      expect(_.first(2)).to.equal(undefined);
     });
   });
 
