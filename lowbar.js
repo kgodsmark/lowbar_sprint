@@ -68,13 +68,11 @@ function binarySearch(array, value, start, end) {
 }
 
 _.filter = function (list, predicate) {
-  const resultArray = [];
-  if (list.length) {
-    for (let i = 0; i < list.length; i++) {
-      if (predicate(list[i], i, list)) resultArray.push(list[i]);
-    } 
-  } 
-  return resultArray;
+  const filteredList = [];
+  _.each(list, (item) => {
+    if (predicate(item)) filteredList.push(item);
+  });
+  return filteredList;
 };
 
 
