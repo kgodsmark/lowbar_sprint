@@ -27,4 +27,11 @@ describe('lowbar', function () {
       expect(_.identity('hello', 'world')).to.equal('hello');
     });
   });
+
+  describe('_.values', function () {
+    it('is a function', function() {
+      expect(_.values).to.be.a('function');
+    });
+  });
+
 });
