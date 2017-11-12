@@ -23,5 +23,8 @@ describe('lowbar', function () {
       expect(_.identity()).to.equal(undefined);
       expect(_.identity(null)).to.equal(null);
     });
+    it('returns the first argument passed', function() {
+      expect(_.identity('hello', 'world')).to.equal('hello');
+    });
   });
 });
