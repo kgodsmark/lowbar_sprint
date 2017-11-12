@@ -1,21 +1,10 @@
-# Lowbar I - Arrays and Objects
+# lowbar_sprint
+My implementation of JavaScript's Underscore library 
 
-## Goals
 
-1. Continue practicing test-driven development (TDD) - both the process and the
-tools you'll be using to do it from now until the end of the course (and beyond).
-2. Get an 'inside view' of one of the most heavily used JavaScript libraries
-[underscore](http://underscorejs.org/) (11m downloads on NPM last month) and
-get used to reading its API documentation.
-3. Lay the foundations for understanding the functional style of programming that JS lends itself so well to.
+## Lowbar I - Arrays and Objects
 
-## Tasks
-
-On this sprint we'll implement our own version of the popular utilities library Underscore.js. The methods you should implement are listed below, but feel free to implement any others you find interesting if you finish.
-
-## Core
-
-These are the core functions you should aim to get finished;
+### Core
 
 1. identity
 2. values
@@ -29,15 +18,7 @@ These are the core functions you should aim to get finished;
 10. map
 11. contains
 
-You should be heavily referencing the APIs of the following;
-
-1. [Underscore](http://underscorejs.org/)
-2. [The Mocha Test Framework](https://mochajs.org/)
-3. [The Chai Assertion Library](http://chaijs.com/)
-
-## Advanced
-
-These are a little harder but will be very beneficial to try and complete.
+### Advanced
 
 1. pluck
 2. reduce
@@ -45,3 +26,26 @@ These are a little harder but will be very beneficial to try and complete.
 4. some
 5. extends
 6. defaults
+
+## Lowbar II - Advanced Methods
+
+### Core
+
+1. once
+2. negate
+3. shuffle
+4. invoke
+5. sortBy
+6. zip
+7. sortedIndex
+8. flatten
+9. intersection
+10. difference
+11. memoize
+
+### Advanced
+
+12. delay
+13. where
+14. throttle
+15. partial
