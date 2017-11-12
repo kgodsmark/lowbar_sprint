@@ -159,6 +159,9 @@ describe('lowbar', function () {
     it('is a function', function () {
       expect(_.indexOf).to.be.a('function');
     });
+    it('returns the index at which the value can be found in the array', function () {
+      expect(_.indexOf([1, 2, 3], 2)).to.equal(1);
+    });
   });
 
 });
