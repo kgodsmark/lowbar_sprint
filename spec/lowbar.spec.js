@@ -58,7 +58,7 @@ describe('lowbar', function () {
       expect(_.first([['first','array'],['second','array']], 1)).to.eql([['first','array']]);
       expect(_.first([{a:'first',b:'object'},{a: 'second',b: 'object'}],1)).to.eql([{a:'first',b:'object'}]);
     });
-    it('returns no elements of an array/string if zero passed', function() {
+    it('returns an empty array if an array/string with zero passed', function() {
       expect(_.first([5, 4, 3, 2, 1], 0)).to.eql([]);
       expect(_.first(['a','b','c'], 0)).to.eql([]);
       expect(_.first([['first','array'],['second','array']], 0)).to.eql([]);
@@ -71,7 +71,7 @@ describe('lowbar', function () {
     it('returns the first n elements of a string of the number passed ', function() {
       expect(_.first('hello', 3)).to.eql(['h', 'e', 'l']);
     });
-    it('doesn\'t pass with arrays and strings', function() {
+    it('doesn\'t work with objects and numbers', function() {
       expect(_.first({a: 'hi', b: 'again'}, 1)).to.eql([]);
       expect(_.first({a: 'hi', b: 'again'})).to.equal(undefined);
       expect(_.first(2,1)).to.eql([]);
@@ -94,6 +94,25 @@ describe('lowbar', function () {
       expect(_.last(['a','b','c'], 2)).to.eql(['b','c']);
       expect(_.last([['first','array'],['second','array']], 1)).to.eql([['second','array']]);
       expect(_.last([{a:'first',b:'object'},{a: 'second',b: 'object'}], 1)).to.eql([{a:'second',b:'object'}]);
+    });
+    it('returns an empty array if an array/string with zero passed', function() {
+      expect(_.last([5, 4, 3, 2, 1], 0)).to.eql([]);
+      expect(_.last(['a','b','c'], 0)).to.eql([]);
+      expect(_.last([['first','array'],['second','array']], 0)).to.eql([]);
+      expect(_.last([{a:'first',b:'object'},{a: 'second',b: 'object'}],0)).to.eql([]);
+      expect(_.last('hello', 0)).to.eql([]);
+    });
+    it('returns the last element of a string if no number passed ', function() {
+      expect(_.last('hello')).to.eql('o');
+    });
+    it('returns the last n elements of a string of the number passed ', function() {
+      expect(_.last('hello', 3)).to.eql(['l', 'l', 'o']);
+    });
+    it('doesn\'t work with objects and numbers', function() {
+      expect(_.last({a: 'hi', b: 'again'}, 1)).to.eql([]);
+      expect(_.last({a: 'hi', b: 'again'})).to.equal(undefined);
+      expect(_.last(2,1)).to.eql([]);
+      expect(_.last(2)).to.equal(undefined);
     });
   });
 
