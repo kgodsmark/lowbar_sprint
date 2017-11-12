@@ -76,5 +76,8 @@ _.filter = function (list, predicate) {
   return filteredList;
 };
 
+_.reject = function () {
+
+};
 
 module.exports = _;

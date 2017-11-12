@@ -191,7 +191,7 @@ describe('lowbar', function () {
     const isEven = item => item % 2 === 0;
     const isLarge = item => item > 10;
     const isE = item => item === 'e';
-    
+
     it('is a function', function () {
       expect(_.filter).to.be.a('function');
     });
@@ -211,9 +211,15 @@ describe('lowbar', function () {
       expect(_.filter({}, isEven)).to.eql([]);
       expect(_.filter(9, isEven)).to.eql([]);
     });
-    it('retuns the original array if predicate is not present', function() {
+    it('returns the original array if predicate is not present', function() {
       expect(_.filter(['h', 'h', 'p'])).to.eql(['h', 'h', 'p']);
     });  
+  });
+
+  describe('_.reject', function () {
+    it('is a function', function () {
+      expect(_.reject).to.be.a('function');
+    });
   });
 
 });
