@@ -77,7 +77,7 @@ _.filter = function (list, predicate) {
 };
 
 _.reject = function (list, predicate) {
-  if(!predicate) return list;
+  if(!predicate) return [];
   const filteredList = [];
   _.each(list, (item) => {
     if (!predicate(item)) filteredList.push(item);

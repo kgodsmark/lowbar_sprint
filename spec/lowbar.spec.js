@@ -232,6 +232,16 @@ describe('lowbar', function () {
       expect(_.reject(['f', 'i', 'g'], isE)).to.eql(['f', 'i', 'g']);
       expect(_.reject(['p', 'e', 'o', 'p', 'l', 'e'], isE)).to.eql(['p', 'o',  'p', 'l']);
     });
+    it('returns an empty array if none of the values pass the predicate', function () {
+      expect(_.reject([20, 30, 40, 50], isLarge)).to.eql([]);
+      expect(_.reject(true, isLarge)).to.eql([]);
+      expect(_.reject('', isEven)).to.eql([]);
+      expect(_.reject({}, isEven)).to.eql([]);
+      expect(_.reject(10, isEven)).to.eql([]);
+    });
+    it('returns an empty array if predicate is not present', function() {
+      expect(_.reject(['h', 'h', 'p'])).to.eql([]);
+    });  
   });
 
 });
