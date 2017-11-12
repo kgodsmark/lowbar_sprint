@@ -120,13 +120,29 @@ describe('lowbar', function () {
     it('is a function', function () {
       expect(_.each).to.be.a('function');
     });
-    it('performs the iteratee action on each element in the list', function () {
+    it('performs the iteratee action on each element in an array list', function () {
       let count = 0;
       function counter() {
         count++;
       }
       _.each([1, 2, 3], counter);
       expect(count).to.equal(3);
+    });
+    it('performs the iteratee action on each element in an object list', function () {
+      let count = 0;
+      function counter() {
+        count++;
+      }
+      _.each({ a: 1, b: 2, c: 3 }, counter);
+      expect(count).to.equal(3);
+    });
+    it('performs the iteratee action on each element in a string', function () {
+      let count = 0;
+      function counter() {
+        count++;
+      }
+      _.each('hello', counter);
+      expect(count).to.equal(5);
     });
   });
 
