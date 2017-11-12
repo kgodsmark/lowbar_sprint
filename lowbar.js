@@ -26,4 +26,8 @@ _.last = function (item, n) {
   if(item.length) return Array.isArray(item) ? item.slice(-n) : item.split('').slice(-n);
 };
 
+_.each = function () {
+
+};
+
 module.exports = _;

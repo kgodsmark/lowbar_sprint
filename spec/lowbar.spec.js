@@ -116,4 +116,10 @@ describe('lowbar', function () {
     });
   });
 
+  describe('_.each', function () {
+    it('is a function', function() {
+      expect(_.each).to.be.a('function');
+    });
+  });
+
 });
