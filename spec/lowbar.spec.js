@@ -144,6 +144,21 @@ describe('lowbar', function () {
       _.each('hello', counter);
       expect(count).to.equal(5);
     });
+    it('returns the list for invalid number or boolean', function () {
+      function counter() {
+      }
+      expect(_.each(5, counter)).to.equal(5);
+      expect(_.each(true, counter)).to.equal(true);
+    });
+    it('requires an iteratee to pass', function () {
+      expect(_.each([1, 2, 3])).to.equal(TypeError);
+    });
+  });
+
+  describe('_.indexOf', function () {
+    it('is a function', function () {
+      expect(_.indexOf).to.be.a('function');
+    });
   });
 
 });

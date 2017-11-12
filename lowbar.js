@@ -27,13 +27,19 @@ _.last = function (item, n) {
 };
 
 _.each = function (list, iteratee) {
+  if(!iteratee) return TypeError;
   if (typeof list === 'object') list = _.values(list);
   if (list.length) {
     for (let i = 0; i < list.length; i++) {
       iteratee(list[i], i, list);
     }
     return list;
-  }
+  } 
+  return list;
+};
+
+_.indexOf = function () {
+
 };
 
 module.exports = _;
