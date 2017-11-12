@@ -37,6 +37,9 @@ describe('lowbar', function () {
       expect(_.values({a: 'hello world', b: 10})).to.eql(['hello world', 10]);
       expect(_.values({a: true, b: null})).to.eql([true, null]);
     });
+    it('returns the first argument passed', function() {
+      expect(_.values({a: 'hello', b: 'world'}, {a: 'again'})).to.eql(['hello', 'world']);
+    });
   });
 
 });
