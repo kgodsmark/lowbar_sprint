@@ -68,6 +68,7 @@ function binarySearch(array, value, start, end) {
 }
 
 _.filter = function (list, predicate) {
+  if(!predicate) return list;
   const filteredList = [];
   _.each(list, (item) => {
     if (predicate(item)) filteredList.push(item);

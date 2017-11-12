@@ -188,18 +188,32 @@ describe('lowbar', function () {
   });
 
   describe('_.filter', function () {
+    const isEven = item => item % 2 === 0;
+    const isLarge = item => item > 10;
+    const isE = item => item === 'e';
+    
     it('is a function', function () {
       expect(_.filter).to.be.a('function');
     });
     it('returns an array of all the values which pass the predicate', function () {
-      expect(_.filter([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; })).to.eql([2, 4, 6]);
-      expect(_.filter({a: 1, b: 2, c: 3}, function(num){ return num % 2 == 0; })).to.eql([2]);
+      expect(_.filter([1, 2, 3, 4, 5, 6], isEven)).to.eql([2, 4, 6]);
+      expect(_.filter({a: 1, b: 2, c: 3}, isEven)).to.eql([2]);
+      expect(_.filter([1, 2, 3, 4, 5, 12], isLarge)).to.eql([12]);
+      expect(_.filter('lemon', isE)).to.eql(['e']);
+      expect(_.filter(['p', 'o', 'o', 'p'], isE)).to.eql([]);
+      expect(_.filter(['p', 'e', 'o', 'p', 'l', 'e'], isE)).to.eql(['e', 'e']);
     });
     it('returns an empty array if none of the values pass the predicate', function () {
-      expect(_.filter([1, 2, 3, 4, 5, 6], function(num){ return num > 10; })).to.eql([]);
-      expect(_.filter('hello', function(num){ return num > 10; })).to.eql([]);
-      expect(_.filter(true, function(num){ return num > 10; })).to.eql([]);
+      expect(_.filter([1, 2, 3, 4, 5, 6], isLarge)).to.eql([]);
+      expect(_.filter('hello', isLarge)).to.eql([]);
+      expect(_.filter(true, isLarge)).to.eql([]);
+      expect(_.filter('', isEven)).to.eql([]);
+      expect(_.filter({}, isEven)).to.eql([]);
+      expect(_.filter(9, isEven)).to.eql([]);
     });
+    it('retuns the original array if predicate is not present', function() {
+      expect(_.filter(['h', 'h', 'p'])).to.eql(['h', 'h', 'p']);
+    });  
   });
 
 });
