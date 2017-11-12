@@ -30,8 +30,17 @@ _.first = function (item, n) {
   }
 };
 
-_.last = function () {
+_.last = function (item, n) {
+  // for arrays and strings
+  if (Array.isArray(item) || typeof item === 'string') {
+    if (arguments.length === 1) return item[item.length-1];
 
+    let result = [];
+    for (let i = item.length-1; n < result.length; i--) {
+      result.push(item[i]);
+    }
+    return result;
+  }
 };
 
 module.exports = _;

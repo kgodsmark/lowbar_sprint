@@ -83,6 +83,12 @@ describe('lowbar', function () {
     it('is a function', function() {
       expect(_.last).to.be.a('function');
     });
+    it('returns the last element of an array if no number passed ', function() {
+      expect(_.last([5, 4, 3, 2, 1])).to.equal(1);
+      expect(_.last(['a','b','c'])).to.equal('c');
+      expect(_.last([['first','array'],['second','array']])).to.eql(['second','array']);
+      expect(_.last([{a:'first',b:'object'},{a: 'second',b: 'object'}])).to.eql({a:'second',b:'object'});
+    });
   });
 
 });
