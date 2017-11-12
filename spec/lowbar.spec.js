@@ -14,5 +14,14 @@ describe('lowbar', function () {
     it('is a function', function() {
       expect(_.identity).to.be.a('function');
     });
+    it('returns the same value used in the argument', function() {
+      expect(_.identity('hello world')).to.equal('hello world');
+      expect(_.identity(true)).to.be.true;
+      expect(_.identity(10)).to.equal(10);
+      expect(_.identity(['hello world'])).to.eql(['hello world']);
+      expect(_.identity({hello: 'world'})).to.eql({hello: 'world'});
+      expect(_.identity()).to.equal(undefined);
+      expect(_.identity(null)).to.equal(null);
+    });
   });
 });
