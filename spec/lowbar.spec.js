@@ -32,6 +32,11 @@ describe('lowbar', function () {
     it('is a function', function() {
       expect(_.values).to.be.a('function');
     });
+    it('returns all of the values of the passed object\'s own properties', function() {
+      expect(_.values({a: 'hello', b: 'world'})).to.eql(['hello', 'world']);
+      expect(_.values({a: 'hello world', b: 10})).to.eql(['hello world', 10]);
+      expect(_.values({a: true, b: null})).to.eql([true, null]);
+    });
   });
 
 });
