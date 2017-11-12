@@ -175,6 +175,15 @@ describe('lowbar', function () {
     });
     it('returns the value found starting at the index passed', function () {
       expect(_.indexOf([1, 2, 4,4 ,5, 4], 4, 3)).to.equal(3);
+      expect(_.indexOf([1, 2, 4,4 ,5, 4], 4, 4)).to.equal(5);
+    });
+    it('returns -1 if array argument is not eligible', function () {
+      expect(_.indexOf([1, 2, 4,4 ,5, 4])).to.equal(-1);
+      expect(_.indexOf(1, 2, 4,4 ,5, 4)).to.equal(-1);
+      expect(_.indexOf({})).to.equal(-1);
+      expect(_.indexOf({a: 1, b: 2, c: 3})).to.equal(-1);
+      expect(_.indexOf({a: 1, b: 2, c: 3}, 2)).to.equal(-1);
+      expect(_.indexOf(true)).to.equal(-1);
     });
   });
 

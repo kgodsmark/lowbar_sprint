@@ -38,10 +38,12 @@ _.each = function (list, iteratee) {
   return list;
 };
 
-_.indexOf = function (array, value, isSorted = false) {
+_.indexOf = function (array, value, isSorted) {
   if (array.length) {
     if (isSorted === true) return binarySearch(array, value);
-    for (let i = 0 || isSorted; i < array.length; i++) {
+    let startIndex = 0;
+    if(typeof isSorted === 'number') {startIndex = isSorted;}
+    for (let i = startIndex; i < array.length; i++) {
       if (array[i] === value) {
         return i;
       }
