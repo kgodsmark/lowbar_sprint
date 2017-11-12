@@ -162,6 +162,9 @@ describe('lowbar', function () {
     it('returns the index at which the value can be found in the array', function () {
       expect(_.indexOf([1, 2, 3], 2)).to.equal(1);
     });
+    it('returns -1 if not found in the array', function () {
+      expect(_.indexOf([1, 2, 3], 4)).to.equal(-1);
+    });
   });
 
 });
