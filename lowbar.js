@@ -30,4 +30,8 @@ _.first = function (item, n) {
   }
 };
 
+_.last = function () {
+
+};
+
 module.exports = _;

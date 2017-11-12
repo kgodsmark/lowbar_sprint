@@ -79,4 +79,10 @@ describe('lowbar', function () {
     });
   });
 
+  describe('_.last', function () {
+    it('is a function', function() {
+      expect(_.last).to.be.a('function');
+    });
+  });
+
 });
