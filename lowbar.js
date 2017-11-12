@@ -26,8 +26,11 @@ _.last = function (item, n) {
   if(item.length) return Array.isArray(item) ? item.slice(-n) : item.split('').slice(-n);
 };
 
-_.each = function () {
-
+_.each = function (list, iteratee) {
+  for(let i = 0; i<list.length; i++) {
+    iteratee(list[i], i, list);
+  }
+  return list;
 };
 
 module.exports = _;
