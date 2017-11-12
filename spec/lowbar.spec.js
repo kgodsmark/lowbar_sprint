@@ -1,16 +1,16 @@
-var path = require('path');
-var expect = require('chai').expect;
+const path = require('path');
+const expect = require('chai').expect;
 
-var _ = require(path.join(__dirname, '..', './lowbar.js'));
+const _ = require(path.join(__dirname, '..', './lowbar.js'));
 
-describe('_', function () {
+describe('lowbar', function () {
   'use strict';
 
   it('is an object', function () {
     expect(_).to.be.an('object');
   });
 
-  describe('#identity', function () {
+  describe('_.identity', function () {
     it('is a function', function() {
       expect(_.identity).to.be.a('function');
     });
