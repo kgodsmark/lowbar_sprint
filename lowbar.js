@@ -15,15 +15,15 @@ _.values = function (object) {
 };
 
 _.first = function (item, n) {
-  // for arrays and strings
-  if (Array.isArray(item) || typeof item === 'string') {
+  // for arrays
+  if (Array.isArray(item)) {
     if (arguments.length === 1) return item[0];
-
-    let result = [];
-    for (let i = 0; i < n; i++) {
-      result.push(item[i]);
-    }
-    return result;
+    return item.slice(0, n);
+  }
+  // for strings
+  if(typeof item === 'string') {
+    if(arguments.length === 1) return item[0];
+    return item.split('').slice(0, n);
   } else {
     // for all other input types
     if (arguments.length === 2) return [];
@@ -33,13 +33,9 @@ _.first = function (item, n) {
 _.last = function (item, n) {
   // for arrays and strings
   if (Array.isArray(item) || typeof item === 'string') {
-    if (arguments.length === 1) return item[item.length-1];
+    if (arguments.length === 1) return item[item.length - 1];
 
-    let result = [];
-    for (let i = item.length-1; n < result.length; i--) {
-      result.push(item[i]);
-    }
-    return result;
+    return item.slice(-n);
   }
 };
 

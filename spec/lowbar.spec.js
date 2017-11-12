@@ -89,6 +89,12 @@ describe('lowbar', function () {
       expect(_.last([['first','array'],['second','array']])).to.eql(['second','array']);
       expect(_.last([{a:'first',b:'object'},{a: 'second',b: 'object'}])).to.eql({a:'second',b:'object'});
     });
+    it('returns the last elements of an array of the number passed ', function() {
+      expect(_.last([5, 4, 3, 2, 1], 2)).to.eql([2, 1]);
+      expect(_.last(['a','b','c'], 2)).to.eql(['b','c']);
+      expect(_.last([['first','array'],['second','array']], 1)).to.eql([['second','array']]);
+      expect(_.last([{a:'first',b:'object'},{a: 'second',b: 'object'}], 1)).to.eql([{a:'second',b:'object'}]);
+    });
   });
 
 });
