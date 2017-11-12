@@ -14,8 +14,10 @@ _.values = function (object) {
   return result;
 };
 
-_.first = function (array, n = 0) {
-  return array[n];
+_.first = function (array, n) {
+  if(arguments.length === 1) return array[0];
+  if (n === 1) { return array.slice(0, n); }
+  return array.slice(0, n);
 };
 
 module.exports = _;

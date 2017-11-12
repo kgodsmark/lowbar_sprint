@@ -46,11 +46,23 @@ describe('lowbar', function () {
     it('is a function', function() {
       expect(_.first).to.be.a('function');
     });
-    it('returns the first element of an array. ', function() {
+    it('returns the first element of an array if no number passed ', function() {
       expect(_.first([5, 4, 3, 2, 1])).to.equal(5);
       expect(_.first(['a','b','c'])).to.equal('a');
       expect(_.first([['first','array'],['second','array']])).to.eql(['first','array']);
       expect(_.first([{a:'first',b:'object'},{a: 'second',b: 'object'}])).to.eql({a:'first',b:'object'});
+    });
+    it('returns the first n elements of an array of the number passed', function() {
+      expect(_.first([5, 4, 3, 2, 1], 2)).to.eql([5, 4]);
+      expect(_.first(['a','b','c'], 2)).to.eql(['a', 'b']);
+      expect(_.first([['first','array'],['second','array']], 1)).to.eql([['first','array']]);
+      expect(_.first([{a:'first',b:'object'},{a: 'second',b: 'object'}],1)).to.eql([{a:'first',b:'object'}]);
+    });
+    it('returns no elements of an array if zero passed', function() {
+      expect(_.first([5, 4, 3, 2, 1], 0)).to.eql([]);
+      expect(_.first(['a','b','c'], 0)).to.eql([]);
+      expect(_.first([['first','array'],['second','array']], 0)).to.eql([]);
+      expect(_.first([{a:'first',b:'object'},{a: 'second',b: 'object'}],0)).to.eql([]);
     });
   });
 
