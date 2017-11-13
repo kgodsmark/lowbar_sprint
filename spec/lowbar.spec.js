@@ -298,12 +298,16 @@ describe('lowbar', function () {
     it('returns true if the value is present in the passed array/object/string', function () {
       expect(_.contains([1, 2, 3], 3)).to.be.true;
       expect(_.contains('hello', 'h')).to.be.true;
-      expect(_.contains({1: 'h', 2: 'e', 3: 'l', 4: 'l', 5: 'o'}, 'h')).to.be.true;
+      expect(_.contains({ 1: 'h', 2: 'e', 3: 'l', 4: 'l', 5: 'o' }, 'h')).to.be.true;
     });
     it('returns false if the value is not present in the passed array/object/string', function () {
       expect(_.contains([1, 2, 3], 7)).to.be.false;
       expect(_.contains('hello', 'z')).to.be.false;
-      expect(_.contains({1: 'h', 2: 'e', 3: 'l', 4: 'o'}, 'p')).to.be.false;
+      expect(_.contains({ 1: 'h', 2: 'e', 3: 'l', 4: 'o' }, 'p')).to.be.false;
+    });
+    it('starts searching fromIndex', function () {
+      expect(_.contains([1, 2, 3], 1, 1)).to.be.false;
+      expect(_.contains('hello', 'h', 1)).to.be.false;
     });
   });
 

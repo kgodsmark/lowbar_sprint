@@ -105,9 +105,9 @@ _.map = function (list, iteratee) {
   return mappedList;
 };
 
-_.contains = function (list, value) {
+_.contains = function (list, value, fromIndex = 0) {
   if (typeof list === 'object') list = _.values(list);
-  if(_.indexOf(list, value) >= 0) return true;
+  if(_.indexOf(list.slice(fromIndex), value) >= 0) return true;
   else return false;
 };
 
