@@ -315,8 +315,13 @@ describe('lowbar', function () {
     it('is a function', function () {
       expect(_.pluck).to.be.a('function');
     });
-    it('returns a list of property values of passed property name', function () {
-      expect(_.pluck([{name: 'chris', age: 21}, {name: 'amul', age: 31}], 'name')).to.eql(['chris', 'amul']);
+    it('returns a list of  values of passed property name', function () {
+      expect(_.pluck([{ name: 'chris', age: 21 }, { name: 'amul', age: 31 }], 'name')).to.eql(['chris', 'amul']);
+      expect(_.pluck([{ name: 'chris', age: 21 }, { name: 'amul', age: 31 }], 'age')).to.eql([21, 31]);
+    });
+    it('returns undefined if the list isn\'t an array of objects', function () {
+      expect(_.pluck(['hi', 'hi'])).to.eql([undefined, undefined]);
+      expect(_.pluck([1, 2, 3])).to.eql([undefined, undefined, undefined]);
     });
   });
 
