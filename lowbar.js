@@ -85,13 +85,18 @@ _.reject = function (list, predicate) {
   return filteredList;
 };
 
-_.uniq = function (list) {
+_.uniq = function (list, isSorted) {
   const uniqueList = [];
-  if (Array.isArray(list) || typeof list === 'string') {
-    for (let i = 0; i < list.length; i++) {
-      if (!uniqueList.includes(list[i])) uniqueList.push(list[i]);
+  // if (Array.isArray(list) || typeof list === 'string') {
+  //   for (let i = 0; i < list.length; i++) {
+  //     if (!uniqueList.includes(list[i])) uniqueList.push(list[i]);
+  //   }
+  // }
+  _.each(list, (item) => {
+    if(_.indexOf(uniqueList, item, isSorted) === -1) {
+      uniqueList.push(item);
     }
-  }
+  });
   return uniqueList;
 };
 

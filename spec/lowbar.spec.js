@@ -251,9 +251,14 @@ describe('lowbar', function () {
     it('returns a duplicate-free version of an array', function() {
       expect(_.uniq([1, 2, 1, 4, 1, 3])).to.eql([1, 2, 4, 3]);
       expect(_.uniq(['a', 'a', 'b', 'c', 'b'])).to.eql(['a','b','c']);
+      expect(_.uniq(['hello', 'hello'])).to.eql(['hello']);
+      expect(_.uniq(['hello'])).to.eql(['hello']);
+      expect(_.uniq(['h', 'e', 'l', 'l'])).to.eql(['h', 'e', 'l']);
     });
     it('returns a duplicate-free version of a string', function() {
       expect(_.uniq('happy')).to.eql(['h','a','p','y']);
+      expect(_.uniq('hello')).to.eql(['h', 'e', 'l', 'o']);
+      expect(_.uniq('')).to.eql([]);
     });    
   });
 
