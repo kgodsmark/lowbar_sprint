@@ -42,7 +42,7 @@ _.indexOf = function (array, value, isSorted) {
   if (array.length) {
     if (isSorted === true) return binarySearch(array, value);
     let startIndex = 0;
-    if(typeof isSorted === 'number') {startIndex = isSorted;}
+    if (typeof isSorted === 'number') { startIndex = isSorted; }
     for (let i = startIndex; i < array.length; i++) {
       if (array[i] === value) {
         return i;
@@ -68,7 +68,7 @@ function binarySearch(array, value, start, end) {
 }
 
 _.filter = function (list, predicate) {
-  if(!predicate) return list;
+  if (!predicate) return list;
   const filteredList = [];
   _.each(list, (item) => {
     if (predicate(item)) filteredList.push(item);
@@ -77,7 +77,7 @@ _.filter = function (list, predicate) {
 };
 
 _.reject = function (list, predicate) {
-  if(!predicate) return [];
+  if (!predicate) return [];
   const filteredList = [];
   _.each(list, (item) => {
     if (!predicate(item)) filteredList.push(item);
@@ -87,9 +87,9 @@ _.reject = function (list, predicate) {
 
 _.uniq = function (list, isSorted) {
   const uniqueList = [];
-  if(list.length) {
+  if (list.length) {
     _.each(list, (item) => {
-      if(_.indexOf(uniqueList, item, isSorted) === -1) {
+      if (_.indexOf(uniqueList, item, isSorted) === -1) {
         uniqueList.push(item);
       }
     });
@@ -99,8 +99,8 @@ _.uniq = function (list, isSorted) {
 
 _.map = function (list, iteratee) {
   const mappedList = [];
-  _.each(list, (item, i, list) => {
-    mappedList.push(iteratee(item, i, list));
+  _.each(list, (item) => {
+    mappedList.push(iteratee(item));
   });
   return mappedList;
 };

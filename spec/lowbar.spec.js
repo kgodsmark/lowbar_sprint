@@ -276,8 +276,12 @@ describe('lowbar', function () {
     it('is a function', function () {
       expect(_.map).to.be.a('function');
     });
-    it('returns a new array mapping each value through the iteratee', function () {
+    it('returns a new array mapping each value array/object through the iteratee', function () {
       expect(_.map([1, 2, 3], timesThree)).to.eql([3, 6, 9]);
+      expect(_.map({one: 1, two: 2, three: 3}, timesThree)).to.eql([3, 6, 9]);
+    });
+    it('using _.first method returns the first of each list item', function () {        
+      expect(_.map([[1, 2], [3, 4]], _.first)).to.eql([1, 3]);
     });
   });
 
