@@ -105,8 +105,10 @@ _.map = function (list, iteratee) {
   return mappedList;
 };
 
-_.contains = function () {
-  
+_.contains = function (list, value) {
+  if (typeof list === 'object') list = _.values(list);
+  if(_.indexOf(list, value) >= 0) return true;
+  else return false;
 };
 
 module.exports = _;
