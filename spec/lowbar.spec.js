@@ -311,4 +311,10 @@ describe('lowbar', function () {
     });
   });
 
+  describe('_.pluck', function () {
+    it('is a function', function () {
+      expect(_.pluck).to.be.a('function');
+    });
+  });
+
 });

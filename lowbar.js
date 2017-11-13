@@ -111,4 +111,8 @@ _.contains = function (list, value, fromIndex = 0) {
   else return false;
 };
 
+_.pluck = function () {
+
+};
+
 module.exports = _;
