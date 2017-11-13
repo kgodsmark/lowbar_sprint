@@ -244,4 +244,10 @@ describe('lowbar', function () {
     });  
   });
 
+  describe('_.uniq', function () {
+    it('is a function', function () {
+      expect(_.uniq).to.be.a('function');
+    });
+  });
+
 });
