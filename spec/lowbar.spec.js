@@ -291,4 +291,10 @@ describe('lowbar', function () {
     });
   });
 
+  describe('_.contains', function () {
+    it('is a function', function () {
+      expect(_.contains).to.be.a('function');
+    });
+  });
+
 });

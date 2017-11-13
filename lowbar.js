@@ -105,5 +105,8 @@ _.map = function (list, iteratee) {
   return mappedList;
 };
 
+_.contains = function () {
+  
+};
 
 module.exports = _;
