@@ -97,7 +97,12 @@ _.uniq = function (list, isSorted) {
   return uniqueList;
 };
 
-_.map = function () {
+_.map = function (list, iteratee) {
+  const mappedList = [];
+  for (let i = 0; i < list.length; i++) {
+    mappedList.push(iteratee(list[i], i, list));
+  }
+  return mappedList;
 
 };
 

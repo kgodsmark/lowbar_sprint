@@ -271,8 +271,13 @@ describe('lowbar', function () {
   });
 
   describe('_.map', function () {
+    const timesThree = num => num * 3;
+
     it('is a function', function () {
       expect(_.map).to.be.a('function');
+    });
+    it('returns a new array mapping each value through the iteratee', function () {
+      expect(_.map([1, 2, 3], timesThree)).to.eql([3, 6, 9]);
     });
   });
 
