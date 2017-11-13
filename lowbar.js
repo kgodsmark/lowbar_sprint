@@ -99,11 +99,10 @@ _.uniq = function (list, isSorted) {
 
 _.map = function (list, iteratee) {
   const mappedList = [];
-  for (let i = 0; i < list.length; i++) {
-    mappedList.push(iteratee(list[i], i, list));
-  }
+  _.each(list, (item, i, list) => {
+    mappedList.push(iteratee(item, i, list));
+  });
   return mappedList;
-
 };
 
 module.exports = _;
