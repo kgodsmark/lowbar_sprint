@@ -166,23 +166,23 @@ describe('lowbar', function () {
       expect(_.indexOf([1, 2, 3], 4)).to.equal(-1);
     });
     it('using the binary search it returns the correct output', function () {
-      expect(_.indexOf([1, 2, 3, 4, 5, 6 ,7], 2, true)).to.equal(1);
-      expect(_.indexOf([1, 2, 3, 4, 5, 6 ,7], 7, true)).to.equal(6);
-      expect(_.indexOf([1, 2, 3, 4, 5, 6 ,7], 4, true)).to.equal(3);
-      expect(_.indexOf([1, 2, 3, 4, 5, 6 ,7], 10, true)).to.equal(-1);
-      expect(_.indexOf([1, 2, 10, 4, 11, 6 ,7], 3, true)).to.equal(-1);
-      expect(_.indexOf([7, 6, 5,4, 3, 2 ,1], 7, true)).to.equal(-1);
+      expect(_.indexOf([1, 2, 3, 4, 5, 6, 7], 2, true)).to.equal(1);
+      expect(_.indexOf([1, 2, 3, 4, 5, 6, 7], 7, true)).to.equal(6);
+      expect(_.indexOf([1, 2, 3, 4, 5, 6, 7], 4, true)).to.equal(3);
+      expect(_.indexOf([1, 2, 3, 4, 5, 6, 7], 10, true)).to.equal(-1);
+      expect(_.indexOf([1, 2, 10, 4, 11, 6, 7], 3, true)).to.equal(-1);
+      expect(_.indexOf([7, 6, 5, 4, 3, 2, 1], 7, true)).to.equal(-1);
     });
     it('returns the value found starting at the index passed', function () {
-      expect(_.indexOf([1, 2, 4,4 ,5, 4], 4, 3)).to.equal(3);
-      expect(_.indexOf([1, 2, 4,4 ,5, 4], 4, 4)).to.equal(5);
+      expect(_.indexOf([1, 2, 4, 4, 5, 4], 4, 3)).to.equal(3);
+      expect(_.indexOf([1, 2, 4, 4, 5, 4], 4, 4)).to.equal(5);
     });
     it('returns -1 if array argument is not eligible', function () {
-      expect(_.indexOf([1, 2, 4,4 ,5, 4])).to.equal(-1);
-      expect(_.indexOf(1, 2, 4,4 ,5, 4)).to.equal(-1);
+      expect(_.indexOf([1, 2, 4, 4, 5, 4])).to.equal(-1);
+      expect(_.indexOf(1, 2, 4, 4, 5, 4)).to.equal(-1);
       expect(_.indexOf({})).to.equal(-1);
-      expect(_.indexOf({a: 1, b: 2, c: 3})).to.equal(-1);
-      expect(_.indexOf({a: 1, b: 2, c: 3}, 2)).to.equal(-1);
+      expect(_.indexOf({ a: 1, b: 2, c: 3 })).to.equal(-1);
+      expect(_.indexOf({ a: 1, b: 2, c: 3 }, 2)).to.equal(-1);
       expect(_.indexOf(true)).to.equal(-1);
     });
   });
@@ -197,7 +197,7 @@ describe('lowbar', function () {
     });
     it('returns an array of all the values which pass the predicate', function () {
       expect(_.filter([1, 2, 3, 4, 5, 6], isEven)).to.eql([2, 4, 6]);
-      expect(_.filter({a: 1, b: 2, c: 3}, isEven)).to.eql([2]);
+      expect(_.filter({ a: 1, b: 2, c: 3 }, isEven)).to.eql([2]);
       expect(_.filter([1, 2, 3, 4, 5, 12], isLarge)).to.eql([12]);
       expect(_.filter('lemon', isE)).to.eql(['e']);
       expect(_.filter(['f', 'i', 'g'], isE)).to.eql([]);
@@ -211,9 +211,9 @@ describe('lowbar', function () {
       expect(_.filter({}, isEven)).to.eql([]);
       expect(_.filter(9, isEven)).to.eql([]);
     });
-    it('returns the original array if predicate is not present', function() {
+    it('returns the original array if predicate is not present', function () {
       expect(_.filter(['h', 'h', 'p'])).to.eql(['h', 'h', 'p']);
-    });  
+    });
   });
 
   describe('_.reject', function () {
@@ -226,11 +226,11 @@ describe('lowbar', function () {
     });
     it('returns an array of all the values which don\'t pass the predicate', function () {
       expect(_.reject([1, 2, 3, 4, 5, 6], isEven)).to.eql([1, 3, 5]);
-      expect(_.reject({a: 1, b: 2, c: 3}, isEven)).to.eql([1, 3]);
+      expect(_.reject({ a: 1, b: 2, c: 3 }, isEven)).to.eql([1, 3]);
       expect(_.reject([1, 2, 3, 4, 5, 12], isLarge)).to.eql([1, 2, 3, 4, 5]);
       expect(_.reject('lemon', isE)).to.eql(['l', 'm', 'o', 'n']);
       expect(_.reject(['f', 'i', 'g'], isE)).to.eql(['f', 'i', 'g']);
-      expect(_.reject(['p', 'e', 'o', 'p', 'l', 'e'], isE)).to.eql(['p', 'o',  'p', 'l']);
+      expect(_.reject(['p', 'e', 'o', 'p', 'l', 'e'], isE)).to.eql(['p', 'o', 'p', 'l']);
     });
     it('returns an empty array if none of the values pass the predicate', function () {
       expect(_.reject([20, 30, 40, 50], isLarge)).to.eql([]);
@@ -239,49 +239,55 @@ describe('lowbar', function () {
       expect(_.reject({}, isEven)).to.eql([]);
       expect(_.reject(10, isEven)).to.eql([]);
     });
-    it('returns an empty array if predicate is not present', function() {
+    it('returns an empty array if predicate is not present', function () {
       expect(_.reject(['h', 'h', 'p'])).to.eql([]);
-    });  
+    });
   });
 
   describe('_.uniq', function () {
     it('is a function', function () {
       expect(_.uniq).to.be.a('function');
     });
-    it('returns a duplicate-free version of an array', function() {
+    it('returns a duplicate-free version of an array', function () {
       expect(_.uniq([1, 2, 1, 4, 1, 3])).to.eql([1, 2, 4, 3]);
-      expect(_.uniq(['a', 'a', 'b', 'c', 'b'])).to.eql(['a','b','c']);
+      expect(_.uniq(['a', 'a', 'b', 'c', 'b'])).to.eql(['a', 'b', 'c']);
       expect(_.uniq(['hello', 'hello'])).to.eql(['hello']);
       expect(_.uniq(['hello'])).to.eql(['hello']);
       expect(_.uniq(['h', 'e', 'l', 'l'])).to.eql(['h', 'e', 'l']);
     });
-    it('returns a duplicate-free version of a string', function() {
-      expect(_.uniq('happy')).to.eql(['h','a','p','y']);
+    it('returns a duplicate-free version of a string', function () {
+      expect(_.uniq('happy')).to.eql(['h', 'a', 'p', 'y']);
       expect(_.uniq('hello')).to.eql(['h', 'e', 'l', 'o']);
       expect(_.uniq('')).to.eql([]);
-    });  
-    it('returns an array if arguments are invalid', function() { 
+    });
+    it('returns an array if arguments are invalid', function () {
       expect(_.uniq(2)).to.eql([]);
-      expect(_.uniq({a: 1, b: 1})).to.eql([]);
-    });  
+      expect(_.uniq({ a: 1, b: 1 })).to.eql([]);
+    });
     it('using the isSorted argument it returns the correct output', function () {
-      expect(_.uniq([1, 2, 3, 4, 5, 6 ,7], true)).to.eql([1, 2, 3, 4, 5, 6 ,7]);
-      expect(_.uniq([1, 2, 3, 10, 10, 6 ,7], false)).to.eql([1, 2, 3, 10, 6, 7]);
+      expect(_.uniq([1, 2, 3, 4, 5, 6, 7], true)).to.eql([1, 2, 3, 4, 5, 6, 7]);
+      expect(_.uniq([1, 2, 3, 10, 10, 6, 7], false)).to.eql([1, 2, 3, 10, 6, 7]);
     });
   });
 
   describe('_.map', function () {
     const timesThree = num => num * 3;
+    const addHI = word => 'HI ' + word;
 
     it('is a function', function () {
       expect(_.map).to.be.a('function');
     });
-    it('returns a new array mapping each value array/object through the iteratee', function () {
+    it('returns a new array mapping each value in the passed array/object/string through the iteratee', function () {
       expect(_.map([1, 2, 3], timesThree)).to.eql([3, 6, 9]);
-      expect(_.map({one: 1, two: 2, three: 3}, timesThree)).to.eql([3, 6, 9]);
+      expect(_.map({ one: 1, two: 2, three: 3 }, timesThree)).to.eql([3, 6, 9]);
+      expect(_.map(['chris', 'amul', 'josh'], addHI)).to.eql(['HI chris', 'HI amul', 'HI josh']);
     });
-    it('using _.first method returns the first of each list item', function () {        
+    it('using _.first method returns the first of each list item', function () {
       expect(_.map([[1, 2], [3, 4]], _.first)).to.eql([1, 3]);
+    });
+    it('returns an empty array if arguments are invalid', function () {
+      expect(_.map(2)).to.eql([]);
+      expect(_.map(true)).to.eql([]);
     });
   });
 
