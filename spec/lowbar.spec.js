@@ -259,7 +259,21 @@ describe('lowbar', function () {
       expect(_.uniq('happy')).to.eql(['h','a','p','y']);
       expect(_.uniq('hello')).to.eql(['h', 'e', 'l', 'o']);
       expect(_.uniq('')).to.eql([]);
-    });    
+    });  
+    it('returns an array if arguments are invalid', function() { 
+      expect(_.uniq(2)).to.eql([]);
+      expect(_.uniq({a: 1, b: 1})).to.eql([]);
+    });  
+    it('using the isSorted argument it returns the correct output', function () {
+      expect(_.uniq([1, 2, 3, 4, 5, 6 ,7], true)).to.eql([1, 2, 3, 4, 5, 6 ,7]);
+      expect(_.uniq([1, 2, 3, 10, 10, 6 ,7], false)).to.eql([1, 2, 3, 10, 6, 7]);
+    });
+  });
+
+  describe('_.map', function () {
+    it('is a function', function () {
+      expect(_.map).to.be.a('function');
+    });
   });
 
 });
