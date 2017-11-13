@@ -248,6 +248,13 @@ describe('lowbar', function () {
     it('is a function', function () {
       expect(_.uniq).to.be.a('function');
     });
+    it('returns a duplicate-free version of an array', function() {
+      expect(_.uniq([1, 2, 1, 4, 1, 3])).to.eql([1, 2, 4, 3]);
+      expect(_.uniq(['a', 'a', 'b', 'c', 'b'])).to.eql(['a','b','c']);
+    });
+    it('returns a duplicate-free version of a string', function() {
+      expect(_.uniq('happy')).to.eql(['h','a','p','y']);
+    });    
   });
 
 });

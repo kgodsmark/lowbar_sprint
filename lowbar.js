@@ -85,8 +85,14 @@ _.reject = function (list, predicate) {
   return filteredList;
 };
 
-_.uniq = function () {
-
+_.uniq = function (list) {
+  const uniqueList = [];
+  if (Array.isArray(list) || typeof list === 'string') {
+    for (let i = 0; i < list.length; i++) {
+      if (!uniqueList.includes(list[i])) uniqueList.push(list[i]);
+    }
+  }
+  return uniqueList;
 };
 
 module.exports = _;
