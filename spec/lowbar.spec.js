@@ -315,6 +315,9 @@ describe('lowbar', function () {
     it('is a function', function () {
       expect(_.pluck).to.be.a('function');
     });
+    it('returns a list of property values of passed property name', function () {
+      expect(_.pluck([{name: 'chris', age: 21}, {name: 'amul', age: 31}], 'name')).to.eql(['chris', 'amul']);
+    });
   });
 
 });

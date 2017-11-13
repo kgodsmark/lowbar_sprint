@@ -107,12 +107,12 @@ _.map = function (list, iteratee) {
 
 _.contains = function (list, value, fromIndex = 0) {
   if (typeof list === 'object') list = _.values(list);
-  if(_.indexOf(list.slice(fromIndex), value) >= 0) return true;
+  if (_.indexOf(list.slice(fromIndex), value) >= 0) return true;
   else return false;
 };
 
-_.pluck = function () {
-
+_.pluck = function (list, propertyName) {
+  return _.map(list, object => object[propertyName]);
 };
 
 module.exports = _;
