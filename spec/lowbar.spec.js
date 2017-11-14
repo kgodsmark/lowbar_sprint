@@ -351,7 +351,7 @@ describe('lowbar', function () {
       expect(_.every([2, 4, 6], isEven)).to.be.true;
       expect(_.every({a: 2, b: 4, c: 6}, isEven)).to.be.true;
     });
-    it('returns false if any of the values in the list don\'t pass the predicate', function () {
+    it('returns false if not all of the values in the list pass the predicate', function () {
       expect(_.every([2, 4, 5], isEven)).to.be.false;
       expect(_.every({a: 2, b: 4, c: 5}, isEven)).to.be.false;
     });
@@ -381,6 +381,19 @@ describe('lowbar', function () {
     it('returns true if any of the values in the list pass the predicate', function () {
       expect(_.some([2, 4, 5], isEven)).to.be.true;
       expect(_.some({a: 2, b: 4, c: 5}, isEven)).to.be.true;
+    });
+    it('returns false if no values in the list pass the predicate', function () {
+      expect(_.some([1, 3, 5], isEven)).to.be.false;
+      expect(_.some({a: 1, b: 3, c: 5}, isEven)).to.be.false;
+    });
+    it('stops traversing the list if a true element is found', function () {
+      let count = 0;
+      const isEvenCount = num => {
+        count++;
+        return num % 2 === 0;
+      };
+      _.some([2, 5, 4], isEvenCount);
+      expect(count).to.equal(1);
     });
   });
 
