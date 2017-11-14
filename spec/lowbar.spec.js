@@ -418,4 +418,10 @@ describe('lowbar', function () {
     });
   });
 
+  describe('_.defaults', function () {
+    it('is a function', function () {
+      expect(_.defaults).to.be.a('function');
+    });
+  });
+
 });

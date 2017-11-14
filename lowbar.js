@@ -157,7 +157,9 @@ _.extends = function (destination) {
     }
   });
   return destination;
+};
 
+_.defaults = function () {
 };
 
 module.exports = _;
