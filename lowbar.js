@@ -125,6 +125,7 @@ _.reduce = function (list, iteratee, memo) {
 };
 
 _.every = function (list, predicate) {
+  if (!predicate) return true;
   if (typeof list === 'object') list = _.values(list);
   if (list.length) {
     for (let i = 0; i < list.length; i++) {

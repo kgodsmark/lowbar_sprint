@@ -355,10 +355,18 @@ describe('lowbar', function () {
       expect(_.every).to.be.a('function');
     });
     it('returns true if all of the values in the list pass the predicate', function () {
-      expect(_.every([2, 4, 5], isEven)).to.be.false;
       expect(_.every([2, 4, 6], isEven)).to.be.true;
-      expect(_.every({a: 2, b: 4, c: 5}, isEven)).to.be.false;
       expect(_.every({a: 2, b: 4, c: 6}, isEven)).to.be.true;
+    });
+    it('returns false if the values in the list don\'t pass the predicate', function () {
+      expect(_.every([2, 4, 5], isEven)).to.be.false;
+      expect(_.every({a: 2, b: 4, c: 5}, isEven)).to.be.false;
+    });
+    it('returns false if empty predicate', function () {
+      expect(_.every([2, 4, 5], function (){})).to.be.false;
+    });
+    it('returns true if no predicate argument', function () {
+      expect(_.every([2, 4, 5])).to.be.true;
     });
   });
 
