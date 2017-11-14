@@ -370,4 +370,10 @@ describe('lowbar', function () {
     });
   });
 
+  describe('_.some', function () {
+    it('is a function', function () {
+      expect(_.some).to.be.a('function');
+    });
+  });
+
 });

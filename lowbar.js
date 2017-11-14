@@ -135,7 +135,9 @@ _.every = function (list, predicate) {
     }
   }
   return true;
+};
 
+_.some = function () {
 };
 
 module.exports = _;
