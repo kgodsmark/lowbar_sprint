@@ -326,13 +326,18 @@ describe('lowbar', function () {
   });
 
   describe('_.reduce', function () {
-    const addTogether = (acc, num) => acc + num;
+    const addTogether = (acc, item) => acc + item;
 
     it('is a function', function () {
       expect(_.reduce).to.be.a('function');
     });
     it('returns a single value by boiling down the passed list', function () {
       expect(_.reduce([1, 2, 3], addTogether, 0)).to.equal(6);
+      expect(_.reduce(['a', 'b', 'c'], addTogether, '')).to.equal('abc');
+    });
+    it('returns a single value by boiling down the passed object list', function () {
+      expect(_.reduce({a: 1, b: 2, c: 3}, addTogether, 0)).to.equal(6);
+      expect(_.reduce({a: 'a', b:'b', c:'c'}, addTogether, '')).to.equal('abc');
     });
   });
 
