@@ -115,8 +115,11 @@ _.pluck = function (list, propertyName) {
   return _.map(list, object => object[propertyName]);
 };
 
-_.reduce = function () {
-
+_.reduce = function (list, iteratee, memo) {
+  for (let i = 0; i < list.length; i++) {
+    memo = iteratee(memo, list[i], i, list);
+  }
+  return memo;
 };
 
 module.exports = _;

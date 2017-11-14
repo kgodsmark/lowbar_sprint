@@ -326,8 +326,13 @@ describe('lowbar', function () {
   });
 
   describe('_.reduce', function () {
+    const addTogether = (acc, num) => acc + num;
+
     it('is a function', function () {
       expect(_.reduce).to.be.a('function');
+    });
+    it('returns a single value by boiling down the passed list', function () {
+      expect(_.reduce([1, 2, 3], addTogether, 0)).to.equal(6);
     });
   });
 
