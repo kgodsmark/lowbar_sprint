@@ -412,6 +412,9 @@ describe('lowbar', function () {
       let skillsObj = {a:'analyst', b: 'programmer'};
       let extendedObj = _.extends({name: 'kerry'}, {age: 21, skills: skillsObj});
       expect(extendedObj.skills === skillsObj).to.be.true;
+      let skillsArr = ['analyst', 'programmer'];
+      let extendedObjWIthArray = _.extends({name: 'kerry'}, {age: 21, skills: skillsArr});
+      expect(extendedObjWIthArray.skills === skillsArr).to.be.true;
     });
   });
 
