@@ -404,6 +404,9 @@ describe('lowbar', function () {
     it('is a function', function () {
       expect(_.extends).to.be.a('function');
     });
+    it('returns a shallowly copied object all of the properties from the source objects over to the destination object', function () {
+      expect(_.extends({name: 'kerry'}, {age: 21})).to.eql({name: 'kerry', age: 21});
+    });
   });
 
 });

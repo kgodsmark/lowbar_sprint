@@ -150,7 +150,13 @@ _.some = function (list, predicate) {
   return false;
 };
 
-_.extends = function () {
+_.extends = function (destination) {
+  _.each(arguments, (object, i) => {
+    for (var key in arguments[i]) {
+      destination[key] = arguments[i][key];
+    }
+  });
+  return destination;
 
 };
 
