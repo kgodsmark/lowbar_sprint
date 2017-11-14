@@ -407,6 +407,12 @@ describe('lowbar', function () {
     it('returns a shallowly copied object all of the properties from the source objects over to the destination object', function () {
       expect(_.extends({name: 'kerry'}, {age: 21})).to.eql({name: 'kerry', age: 21});
     });
+    it('returns nested objects/arrays copied by reference, not duplicated.', function () {
+      expect(_.extends({name: 'kerry'}, {age: 21, skills: {a:'analyst', b: 'programmer'}})).to.eql({name: 'kerry', age: 21, skills:{a: 'analyst', b: 'programmer'}});
+      let skillsObj = {a:'analyst', b: 'programmer'};
+      let extendedObj = _.extends({name: 'kerry'}, {age: 21, skills: skillsObj});
+      expect(extendedObj.skills === skillsObj).to.be.true;
+    });
   });
 
 });
