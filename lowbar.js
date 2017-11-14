@@ -117,7 +117,9 @@ _.pluck = function (list, propertyName) {
 
 _.reduce = function (list, iteratee, memo) {
   _.each(list, (item, i, list) => {
-    memo = iteratee(memo, item, i, list);
+    if(memo === undefined) {
+      memo = item;
+    } else memo = iteratee(memo, item, i, list);
   });
   return memo;
 };

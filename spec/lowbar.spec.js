@@ -339,6 +339,14 @@ describe('lowbar', function () {
       expect(_.reduce({a: 1, b: 2, c: 3}, addTogether, 0)).to.equal(6);
       expect(_.reduce({a: 'a', b:'b', c:'c'}, addTogether, '')).to.equal('abc');
     });
+    it('returns the list passed if just a string', function () {
+      expect(_.reduce('abbccd', addTogether), '').to.equal('abbccd');
+    });
+    it('works without an accumulator specified', function () {
+      expect(_.reduce([1, 2, 3], addTogether)).to.equal(6);
+      expect(_.reduce(['a', 'b', 'c'], addTogether)).to.equal('abc');
+    });
   });
+
 
 });
