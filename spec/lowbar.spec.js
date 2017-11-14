@@ -349,8 +349,16 @@ describe('lowbar', function () {
   });
 
   describe('_.every', function () {
+    const isEven = num => num % 2 === 0;
+
     it('is a function', function () {
       expect(_.every).to.be.a('function');
+    });
+    it('returns true if all of the values in the list pass the predicate', function () {
+      expect(_.every([2, 4, 5], isEven)).to.be.false;
+      expect(_.every([2, 4, 6], isEven)).to.be.true;
+      expect(_.every({a: 2, b: 4, c: 5}, isEven)).to.be.false;
+      expect(_.every({a: 2, b: 4, c: 6}, isEven)).to.be.true;
     });
   });
 

@@ -117,14 +117,23 @@ _.pluck = function (list, propertyName) {
 
 _.reduce = function (list, iteratee, memo) {
   _.each(list, (item, i, list) => {
-    if(memo === undefined) {
+    if (memo === undefined) {
       memo = item;
     } else memo = iteratee(memo, item, i, list);
   });
   return memo;
 };
 
-_.every = function () {
+_.every = function (list, predicate) {
+  if (typeof list === 'object') list = _.values(list);
+  if (list.length) {
+    for (let i = 0; i < list.length; i++) {
+      if (!predicate(list[i])) {
+        return false;
+      }
+    }
+  }
+  return true;
 
 };
 
