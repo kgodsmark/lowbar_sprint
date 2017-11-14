@@ -159,7 +159,14 @@ _.extends = function (destination) {
   return destination;
 };
 
-_.defaults = function () {
+_.defaults = function (destination) {
+  _.each(arguments, (object, i) => {
+    for (var key in arguments[i]) {
+      if (destination[key] === undefined)
+        destination[key] = arguments[i][key];
+    }
+  });
+  return destination;
 };
 
 module.exports = _;

@@ -139,7 +139,7 @@ describe('lowbar', function () {
       expect(count).to.equal(5);
     });
     it('returns the list for invalid number or boolean', function () {
-      const counter = function () {};
+      const counter = function () { };
       expect(_.each(5, counter)).to.equal(5);
       expect(_.each(true, counter)).to.equal(true);
     });
@@ -349,11 +349,11 @@ describe('lowbar', function () {
     });
     it('returns true if all of the values in the list pass the predicate', function () {
       expect(_.every([2, 4, 6], isEven)).to.be.true;
-      expect(_.every({a: 2, b: 4, c: 6}, isEven)).to.be.true;
+      expect(_.every({ a: 2, b: 4, c: 6 }, isEven)).to.be.true;
     });
     it('returns false if not all of the values in the list pass the predicate', function () {
       expect(_.every([2, 4, 5], isEven)).to.be.false;
-      expect(_.every({a: 2, b: 4, c: 5}, isEven)).to.be.false;
+      expect(_.every({ a: 2, b: 4, c: 5 }, isEven)).to.be.false;
     });
     it('stops traversing the list if a false element is found', function () {
       let count = 0;
@@ -365,7 +365,7 @@ describe('lowbar', function () {
       expect(count).to.equal(2);
     });
     it('returns false if empty predicate', function () {
-      expect(_.every([2, 4, 5], function (){})).to.be.false;
+      expect(_.every([2, 4, 5], function () { })).to.be.false;
     });
     it('returns true if no predicate argument', function () {
       expect(_.every([2, 4, 5])).to.be.true;
@@ -380,11 +380,11 @@ describe('lowbar', function () {
     });
     it('returns true if any of the values in the list pass the predicate', function () {
       expect(_.some([2, 4, 5], isEven)).to.be.true;
-      expect(_.some({a: 2, b: 4, c: 5}, isEven)).to.be.true;
+      expect(_.some({ a: 2, b: 4, c: 5 }, isEven)).to.be.true;
     });
     it('returns false if no values in the list pass the predicate', function () {
       expect(_.some([1, 3, 5], isEven)).to.be.false;
-      expect(_.some({a: 1, b: 3, c: 5}, isEven)).to.be.false;
+      expect(_.some({ a: 1, b: 3, c: 5 }, isEven)).to.be.false;
     });
     it('stops traversing the list if a true element is found', function () {
       let count = 0;
@@ -405,15 +405,15 @@ describe('lowbar', function () {
       expect(_.extends).to.be.a('function');
     });
     it('returns a shallowly copied object all of the properties from the source objects over to the destination object', function () {
-      expect(_.extends({name: 'kerry'}, {age: 21})).to.eql({name: 'kerry', age: 21});
+      expect(_.extends({ name: 'kerry' }, { age: 21 })).to.eql({ name: 'kerry', age: 21 });
     });
     it('returns nested objects/arrays copied by reference, not duplicated.', function () {
-      expect(_.extends({name: 'kerry'}, {age: 21, skills: {a:'analyst', b: 'programmer'}})).to.eql({name: 'kerry', age: 21, skills:{a: 'analyst', b: 'programmer'}});
-      let skillsObj = {a:'analyst', b: 'programmer'};
-      let extendedObj = _.extends({name: 'kerry'}, {age: 21, skills: skillsObj});
+      expect(_.extends({ name: 'kerry' }, { age: 21, skills: { a: 'analyst', b: 'programmer' } })).to.eql({ name: 'kerry', age: 21, skills: { a: 'analyst', b: 'programmer' } });
+      let skillsObj = { a: 'analyst', b: 'programmer' };
+      let extendedObj = _.extends({ name: 'kerry' }, { age: 21, skills: skillsObj });
       expect(extendedObj.skills === skillsObj).to.be.true;
       let skillsArr = ['analyst', 'programmer'];
-      let extendedObjWIthArray = _.extends({name: 'kerry'}, {age: 21, skills: skillsArr});
+      let extendedObjWIthArray = _.extends({ name: 'kerry' }, { age: 21, skills: skillsArr });
       expect(extendedObjWIthArray.skills === skillsArr).to.be.true;
     });
   });
@@ -421,6 +421,16 @@ describe('lowbar', function () {
   describe('_.defaults', function () {
     it('is a function', function () {
       expect(_.defaults).to.be.a('function');
+    });
+    it('returns undefined properties with the first value present in the following list of defaults objects', function () {
+      expect(_.defaults({ flavour: 'chocolate' }, { flavour: '', sprinkles: 'lots' })).to.eql({ flavour: 'chocolate', sprinkles: 'lots' });
+      expect(_.defaults({ flavour: 'chocolate' }, { sprinkles: 'lots', flavour: '' })).to.eql({ flavour: 'chocolate', sprinkles: 'lots' });
+      expect(_.defaults({ flavour: 'chocolate', sprinkles: 'lots' }, { sprinkles: 'none' })).to.eql({ flavour: 'chocolate', sprinkles: 'lots' });
+    });
+    it('returns properties with the first object values as default', function () {
+      expect(_.defaults({ flavour: 'chocolate' }, { flavour: 'vanilla'})).to.eql({ flavour: 'chocolate' });
+      expect(_.defaults({ flavour: 'chocolate' }, { sprinkles: 'lots', flavour: 'cherry' })).to.eql({ flavour: 'chocolate', sprinkles: 'lots' });
+      expect(_.defaults({ flavour: 'chocolate', sprinkles: 'lots' }, { sprinkles: 'none' })).to.eql({ flavour: 'chocolate', sprinkles: 'lots' });
     });
   });
 
