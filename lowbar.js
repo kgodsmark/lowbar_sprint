@@ -124,4 +124,8 @@ _.reduce = function (list, iteratee, memo) {
   return memo;
 };
 
+_.every = function () {
+
+};
+
 module.exports = _;
