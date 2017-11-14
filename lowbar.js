@@ -137,7 +137,17 @@ _.every = function (list, predicate) {
   return true;
 };
 
-_.some = function () {
+_.some = function (list, predicate) {
+  if (!predicate) return true;
+  if (typeof list === 'object') list = _.values(list);
+  if (list.length) {
+    for (let i = 0; i < list.length; i++) {
+      if (predicate(list[i])) {
+        return true;
+      }
+    }
+  }
+  return false;
 };
 
 module.exports = _;

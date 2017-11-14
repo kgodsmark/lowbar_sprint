@@ -122,31 +122,24 @@ describe('lowbar', function () {
     });
     it('performs the iteratee action on each element in an array list', function () {
       let count = 0;
-      function counter() {
-        count++;
-      }
+      const counter = () => count++;
       _.each([1, 2, 3], counter);
       expect(count).to.equal(3);
     });
     it('performs the iteratee action on each element in an object list', function () {
       let count = 0;
-      function counter() {
-        count++;
-      }
+      const counter = () => count++;
       _.each({ a: 1, b: 2, c: 3 }, counter);
       expect(count).to.equal(3);
     });
     it('performs the iteratee action on each element in a string', function () {
       let count = 0;
-      function counter() {
-        count++;
-      }
+      const counter = () => count++;
       _.each('hello', counter);
       expect(count).to.equal(5);
     });
     it('returns the list for invalid number or boolean', function () {
-      function counter() {
-      }
+      const counter = function () {};
       expect(_.each(5, counter)).to.equal(5);
       expect(_.each(true, counter)).to.equal(true);
     });
@@ -358,9 +351,18 @@ describe('lowbar', function () {
       expect(_.every([2, 4, 6], isEven)).to.be.true;
       expect(_.every({a: 2, b: 4, c: 6}, isEven)).to.be.true;
     });
-    it('returns false if the values in the list don\'t pass the predicate', function () {
+    it('returns false if any of the values in the list don\'t pass the predicate', function () {
       expect(_.every([2, 4, 5], isEven)).to.be.false;
       expect(_.every({a: 2, b: 4, c: 5}, isEven)).to.be.false;
+    });
+    it('stops traversing the list if a false element is found', function () {
+      let count = 0;
+      const isEvenCount = num => {
+        count++;
+        return num % 2 === 0;
+      };
+      _.every([2, 5, 4], isEvenCount);
+      expect(count).to.equal(2);
     });
     it('returns false if empty predicate', function () {
       expect(_.every([2, 4, 5], function (){})).to.be.false;
@@ -371,8 +373,14 @@ describe('lowbar', function () {
   });
 
   describe('_.some', function () {
+    const isEven = num => num % 2 === 0;
+
     it('is a function', function () {
       expect(_.some).to.be.a('function');
+    });
+    it('returns true if any of the values in the list pass the predicate', function () {
+      expect(_.some([2, 4, 5], isEven)).to.be.true;
+      expect(_.some({a: 2, b: 4, c: 5}, isEven)).to.be.true;
     });
   });
 
