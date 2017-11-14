@@ -400,4 +400,10 @@ describe('lowbar', function () {
     });
   });
 
+  describe('_.extends', function () {
+    it('is a function', function () {
+      expect(_.extends).to.be.a('function');
+    });
+  });
+
 });

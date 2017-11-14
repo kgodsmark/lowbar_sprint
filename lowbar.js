@@ -150,4 +150,8 @@ _.some = function (list, predicate) {
   return false;
 };
 
+_.extends = function () {
+
+};
+
 module.exports = _;
