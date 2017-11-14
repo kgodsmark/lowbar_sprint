@@ -395,6 +395,9 @@ describe('lowbar', function () {
       _.some([2, 5, 4], isEvenCount);
       expect(count).to.equal(1);
     });
+    it('returns true if no predicate argument', function () {
+      expect(_.some([2, 4, 5])).to.be.true;
+    });
   });
 
 });
