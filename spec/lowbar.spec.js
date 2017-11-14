@@ -325,4 +325,10 @@ describe('lowbar', function () {
     });
   });
 
+  describe('_.reduce', function () {
+    it('is a function', function () {
+      expect(_.reduce).to.be.a('function');
+    });
+  });
+
 });
