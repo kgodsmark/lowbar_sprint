@@ -44,7 +44,7 @@ You will find the following methods in the lowbar.js file.
 
 ### Prerequisites
 
-Built using Node.js v8.6.0 and then used Chai v3.5.0 and Mocha v.3.5.0 for test driven development.
+Built using Node.js v8.6.0 and then used Chai v3.5.0 and Mocha v.3.5.0 for test driven development. I also used Sinon v4.2.1 to mock console logs.
 
 
 ### Using the library
