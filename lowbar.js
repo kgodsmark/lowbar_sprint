@@ -153,4 +153,14 @@ _.defaults = function (destination) {
   return destination;
 };
 
+_.once = function (func) {
+  let isFirstTime = true;
+  return () => {
+    if (isFirstTime) {
+      isFirstTime = false;
+      return func();
+    }
+  };
+};
+
 module.exports = _;

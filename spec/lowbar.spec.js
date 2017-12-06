@@ -1,5 +1,6 @@
 const path = require('path');
 const expect = require('chai').expect;
+const sinon = require('sinon');
 
 const _ = require(path.join(__dirname, '..', './lowbar.js'));
 
@@ -434,6 +435,20 @@ describe('lowbar', function () {
       expect(_.defaults({ flavour: 'chocolate' }, { flavour: 'vanilla' })).to.eql({ flavour: 'chocolate' });
       expect(_.defaults({ flavour: 'chocolate' }, { sprinkles: 'lots', flavour: 'cherry' })).to.eql({ flavour: 'chocolate', sprinkles: 'lots' });
       expect(_.defaults({ flavour: 'chocolate', sprinkles: 'lots' }, { sprinkles: 'none' })).to.eql({ flavour: 'chocolate', sprinkles: 'lots' });
+    });
+  });
+
+  describe('_.once', function () {
+    it('it returns a function', () => {
+      expect(_.once()).to.be.a('function');
+    });
+    it('only allows the function to be called once', function () {
+      const spy = sinon.spy(console.log);
+      const callOnce = _.once(spy);
+      callOnce('first');
+      callOnce('second');
+      callOnce('third');
+      expect(spy.callCount).to.eql(1);
     });
   });
 
