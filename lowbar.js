@@ -164,9 +164,23 @@ _.once = function (func) {
 };
 
 _.negate = function (func) {
-  return function() {
+  return function () {
     return !func.apply(this, arguments);
   };
+};
+
+_.shuffle = function (list) {
+  var locationA = 0, temp = null;
+
+  for (let i = list.length - 1; i > 0; i -= 1) {
+    locationA = Math.floor(Math.random() * (i + 1));
+    temp = list[i];
+    list[i] = list[locationA];
+    list[locationA] = temp;
+  }
+  return list;
+
+
 };
 
 module.exports = _;

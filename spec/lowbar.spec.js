@@ -463,4 +463,10 @@ describe('lowbar', function () {
     });
   });
 
+  describe('_.shuffle', function () {
+    it('returns a shuffled copy of the list', function () {
+      expect(_.shuffle([1, 2, 3, 4, 5, 6])).to.not.eql([1, 2, 3, 4, 5, 6]);
+    });
+  });
+
 });
