@@ -11,9 +11,6 @@ describe('lowbar', function () {
   });
 
   describe('_.identity', function () {
-    it('is a function', function () {
-      expect(_.identity).to.be.a('function');
-    });
     it('returns the same value used in the argument', function () {
       expect(_.identity('hello world')).to.equal('hello world');
       expect(_.identity(true)).to.be.true;
@@ -29,9 +26,6 @@ describe('lowbar', function () {
   });
 
   describe('_.values', function () {
-    it('is a function', function () {
-      expect(_.values).to.be.a('function');
-    });
     it('returns all of the values of the passed object\'s own properties', function () {
       expect(_.values({ a: 'hello', b: 'world' })).to.eql(['hello', 'world']);
       expect(_.values({ a: 'hello world', b: 10 })).to.eql(['hello world', 10]);
@@ -43,9 +37,6 @@ describe('lowbar', function () {
   });
 
   describe('_.first', function () {
-    it('is a function', function () {
-      expect(_.first).to.be.a('function');
-    });
     it('returns the first element of an array if no number passed ', function () {
       expect(_.first([5, 4, 3, 2, 1])).to.equal(5);
       expect(_.first(['a', 'b', 'c'])).to.equal('a');
@@ -80,9 +71,6 @@ describe('lowbar', function () {
   });
 
   describe('_.last', function () {
-    it('is a function', function () {
-      expect(_.last).to.be.a('function');
-    });
     it('returns the last element of an array if no number passed ', function () {
       expect(_.last([5, 4, 3, 2, 1])).to.equal(1);
       expect(_.last(['a', 'b', 'c'])).to.equal('c');
@@ -153,9 +141,6 @@ describe('lowbar', function () {
   });
 
   describe('_.indexOf', function () {
-    it('is a function', function () {
-      expect(_.indexOf).to.be.a('function');
-    });
     it('returns the index at which the value can be found in the array', function () {
       expect(_.indexOf([1, 2, 3], 2)).to.equal(1);
     });
@@ -189,9 +174,6 @@ describe('lowbar', function () {
     const isLarge = item => item > 10;
     const isE = item => item === 'e';
 
-    it('is a function', function () {
-      expect(_.filter).to.be.a('function');
-    });
     it('returns an array of all the values which pass the predicate', function () {
       expect(_.filter([1, 2, 3, 4, 5, 6], isEven)).to.eql([2, 4, 6]);
       expect(_.filter({ a: 1, b: 2, c: 3 }, isEven)).to.eql([2]);
@@ -218,9 +200,6 @@ describe('lowbar', function () {
     const isLarge = item => item > 10;
     const isE = item => item === 'e';
 
-    it('is a function', function () {
-      expect(_.reject).to.be.a('function');
-    });
     it('returns an array of all the values which don\'t pass the predicate', function () {
       expect(_.reject([1, 2, 3, 4, 5, 6], isEven)).to.eql([1, 3, 5]);
       expect(_.reject({ a: 1, b: 2, c: 3 }, isEven)).to.eql([1, 3]);
@@ -242,9 +221,6 @@ describe('lowbar', function () {
   });
 
   describe('_.uniq', function () {
-    it('is a function', function () {
-      expect(_.uniq).to.be.a('function');
-    });
     it('returns a duplicate-free version of an array', function () {
       expect(_.uniq([1, 2, 1, 4, 1, 3])).to.eql([1, 2, 4, 3]);
       expect(_.uniq(['a', 'a', 'b', 'c', 'b'])).to.eql(['a', 'b', 'c']);
@@ -271,9 +247,6 @@ describe('lowbar', function () {
     const timesThree = num => num * 3;
     const addHI = word => 'HI ' + word;
 
-    it('is a function', function () {
-      expect(_.map).to.be.a('function');
-    });
     it('returns a new array mapping each value in the passed array/object/string through the iteratee', function () {
       expect(_.map([1, 2, 3], timesThree)).to.eql([3, 6, 9]);
       expect(_.map({ one: 1, two: 2, three: 3 }, timesThree)).to.eql([3, 6, 9]);
@@ -289,9 +262,6 @@ describe('lowbar', function () {
   });
 
   describe('_.contains', function () {
-    it('is a function', function () {
-      expect(_.contains).to.be.a('function');
-    });
     it('returns true if the value is present in the passed array/object/string', function () {
       expect(_.contains([1, 2, 3], 3)).to.be.true;
       expect(_.contains('hello', 'h')).to.be.true;
@@ -309,9 +279,6 @@ describe('lowbar', function () {
   });
 
   describe('_.pluck', function () {
-    it('is a function', function () {
-      expect(_.pluck).to.be.a('function');
-    });
     it('returns a list of  values of passed property name', function () {
       expect(_.pluck([{ name: 'chris', age: 21 }, { name: 'amul', age: 31 }], 'name')).to.eql(['chris', 'amul']);
       expect(_.pluck([{ name: 'chris', age: 21 }, { name: 'amul', age: 31 }], 'age')).to.eql([21, 31]);
@@ -325,9 +292,6 @@ describe('lowbar', function () {
   describe('_.reduce', function () {
     const addTogether = (acc, item) => acc + item;
 
-    it('is a function', function () {
-      expect(_.reduce).to.be.a('function');
-    });
     it('returns a single value by boiling down the passed list', function () {
       expect(_.reduce([1, 2, 3], addTogether, 0)).to.equal(6);
       expect(_.reduce(['a', 'b', 'c'], addTogether, '')).to.equal('abc');
@@ -348,9 +312,6 @@ describe('lowbar', function () {
   describe('_.every', function () {
     const isEven = num => num % 2 === 0;
 
-    it('is a function', function () {
-      expect(_.every).to.be.a('function');
-    });
     it('returns true if all of the values in the list pass the predicate', function () {
       expect(_.every([2, 4, 6], isEven)).to.be.true;
       expect(_.every({ a: 2, b: 4, c: 6 }, isEven)).to.be.true;
@@ -379,9 +340,6 @@ describe('lowbar', function () {
   describe('_.some', function () {
     const isEven = num => num % 2 === 0;
 
-    it('is a function', function () {
-      expect(_.some).to.be.a('function');
-    });
     it('returns true if any of the values in the list pass the predicate', function () {
       expect(_.some([2, 4, 5], isEven)).to.be.true;
       expect(_.some({ a: 2, b: 4, c: 5 }, isEven)).to.be.true;
@@ -405,9 +363,6 @@ describe('lowbar', function () {
   });
 
   describe('_.extends', function () {
-    it('is a function', function () {
-      expect(_.extends).to.be.a('function');
-    });
     it('returns a shallowly copied object all of the properties from the source objects over to the destination object', function () {
       expect(_.extends({ name: 'kerry' }, { age: 21 })).to.eql({ name: 'kerry', age: 21 });
     });
@@ -423,9 +378,6 @@ describe('lowbar', function () {
   });
 
   describe('_.defaults', function () {
-    it('is a function', function () {
-      expect(_.defaults).to.be.a('function');
-    });
     it('returns undefined properties with the first value present in the following list of defaults objects', function () {
       expect(_.defaults({ flavour: 'chocolate' }, { flavour: '', sprinkles: 'lots' })).to.eql({ flavour: 'chocolate', sprinkles: 'lots' });
       expect(_.defaults({ flavour: 'chocolate' }, { sprinkles: 'lots', flavour: '' })).to.eql({ flavour: 'chocolate', sprinkles: 'lots' });
