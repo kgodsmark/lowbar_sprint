@@ -100,11 +100,11 @@ _.pluck = function (list, propertyName) {
   return _.map(list, object => object[propertyName]);
 };
 
-_.reduce = function (list, iteratee, memo) {
+_.reduce = function (list, iteratee, memo, context = this) {
   _.each(list, (item, i, list) => {
     if (memo === undefined) {
       memo = item;
-    } else memo = iteratee(memo, item, i, list);
+    } else memo = iteratee.call(context, memo, item, i, list);
   });
   return memo;
 };

@@ -328,6 +328,13 @@ describe('lowbar', function () {
       expect(_.reduce([1, 2, 3], addTogether)).to.equal(6);
       expect(_.reduce(['a', 'b', 'c'], addTogether)).to.equal('abc');
     });
+    it('uses context if passed context argument', () => {
+      function addTo(acc, item) {
+        return item + this;
+      }
+      const result = _.reduce([1, 2, 3], addTo, [], 3);
+      expect(result).to.equal(6);
+    });
   });
 
   describe('_.every', function () {
