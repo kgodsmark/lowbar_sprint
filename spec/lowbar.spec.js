@@ -335,6 +335,11 @@ describe('lowbar', function () {
     it('returns true if no predicate argument', function () {
       expect(_.every([2, 4, 5])).to.be.true;
     });
+    it('uses context if passed context argument', () => {
+      const isGreaterThan = num => num > this;
+      const result = _.every([2, 4, 5], isGreaterThan, 3);
+      expect(result).to.equal(false);
+    });
   });
 
   describe('_.some', function () {
