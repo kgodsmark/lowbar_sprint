@@ -225,6 +225,13 @@ describe('lowbar', function () {
     it('returns an empty array if predicate is not present', function () {
       expect(_.reject(['h', 'h', 'p'])).to.eql([]);
     });
+    it('uses context if passed context argument', () => {
+      function isLessThan(num) {
+        return num < this;
+      }
+      const result = _.reject([1, 2, 3, 4, 5, 6], isLessThan, 3);
+      expect(result).to.eql([3, 4, 5, 6]);
+    });
   });
 
   describe('_.uniq', function () {

@@ -61,11 +61,11 @@ _.filter = function (list, predicate, context = this) {
   return filteredList;
 };
 
-_.reject = function (list, predicate) {
+_.reject = function (list, predicate, context = this) {
   if (!predicate) return [];
   const filteredList = [];
   _.each(list, (item) => {
-    if (!predicate(item)) filteredList.push(item);
+    if (!predicate.call(context, item)) filteredList.push(item);
   });
   return filteredList;
 };
