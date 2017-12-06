@@ -1,5 +1,6 @@
 const _ = {};
 const binarySearch = require('./utils/binarySearch');
+const binaryInsertIndex = require('./utils/binaryInsertIndex');
 
 _.identity = function (value) {
   return value;
@@ -188,12 +189,17 @@ _.invoke = function (list = [], method, ...args) {
   });
 };
 
-_.sortBy = function (list, iteratee, context = this) {
+_.sortBy = function (list = [], iteratee, context = this) {
   let sortedArray = [];
   _.each(list, (item, i, list) => {
     sortedArray.push(iteratee.call(context, item, i, list));
   });
   return sortedArray.sort((a, b) => b < a);
+};
+
+_.sortedIndex = function (list = [], value, iteratee = _.identity, context = this) {
+  return binaryInsertIndex(_.sortBy(list, iteratee), value);
+
 };
 
 

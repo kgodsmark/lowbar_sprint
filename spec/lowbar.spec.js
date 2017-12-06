@@ -499,7 +499,23 @@ describe('lowbar', function () {
       expect(_.sortBy([3.6, 1.4, 2.3], squareRt)).to.eql([1, 2, 4]);
       expect(_.sortBy({a:3.6, b:1.4, c:2.3}, squareRt)).to.eql([1, 2, 4]);
     });
+    it('uses context if passed context argument', () => {
+      const addTwo = function(num) {
+        return this + num;
+      };
+      expect(_.sortBy([1,2,3], addTwo, 2)).to.eql([3,4,5]);
+    });
+    it('returns an empty array if no list passed', () => {
+      expect(_.sortBy()).to.eql([]);
+      expect(_.sortBy([])).to.eql([]);
+      expect(_.sortBy({})).to.eql([]);
+    });
+  });
 
+  describe('_.sortedIndex', function () {
+    it('returns the index at which a value can be inserted into the list, maintaining order', function () {
+      expect(_.sortedIndex([10, 20, 30, 40, 50], 35)).to.eql(3);
+    });
   });
 
 });
