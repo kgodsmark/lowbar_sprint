@@ -122,12 +122,12 @@ _.every = function (list, predicate, context = this) {
   return true;
 };
 
-_.some = function (list, predicate) {
+_.some = function (list, predicate, context = this) {
   if (!predicate) return true;
   if (typeof list === 'object') list = _.values(list);
   if (list.length) {
     for (let i = 0; i < list.length; i++) {
-      if (predicate(list[i])) {
+      if (predicate.call(context, list[i])) {
         return true;
       }
     }

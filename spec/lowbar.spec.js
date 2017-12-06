@@ -198,7 +198,7 @@ describe('lowbar', function () {
         return num < this;
       }
       const result = _.filter([1, 2, 3, 4, 5, 6], isLessThan, 3);
-      expect(result).to.eql([1,2]);
+      expect(result).to.eql([1, 2]);
     });
   });
 
@@ -364,9 +364,15 @@ describe('lowbar', function () {
       expect(_.every([2, 4, 5])).to.be.true;
     });
     it('uses context if passed context argument', () => {
-      const isGreaterThan = num => num > this;
-      const result = _.every([2, 4, 5], isGreaterThan, 3);
-      expect(result).to.equal(false);
+      function isGreaterThan(num) {
+        return num > this;
+      }
+      const resultA = _.every([2, 4, 5], isGreaterThan, 3);
+      expect(resultA).to.equal(false);
+      const resultB = _.every([2, 4, 5], isGreaterThan, 1);
+      expect(resultB).to.equal(true);
+      const resultC = _.every({ a: 2, b: 4, c: 5 }, isGreaterThan, 1);
+      expect(resultC).to.equal(true);
     });
   });
 
@@ -392,6 +398,17 @@ describe('lowbar', function () {
     });
     it('returns true if no predicate argument', function () {
       expect(_.some([2, 4, 5])).to.be.true;
+    });
+    it('uses context if passed context argument', () => {
+      function isGreaterThan(num) {
+        return num > this;
+      }
+      const resultA = _.some([2, 4, 5], isGreaterThan, 3);
+      expect(resultA).to.equal(true);
+      const resultB = _.some([2, 4, 5], isGreaterThan, 6);
+      expect(resultB).to.equal(false);
+      const resultC = _.some({ a: 2, b: 4, c: 5 }, isGreaterThan, 3);
+      expect(resultC).to.equal(true);
     });
   });
 
