@@ -26,12 +26,12 @@ _.last = function (item, n) {
   if (item.length) return Array.isArray(item) ? item.slice(-n) : item.split('').slice(-n);
 };
 
-_.each = function (list, iteratee) {
+_.each = function (list, iteratee, context = this) {
   if (!iteratee) return TypeError;
   if (typeof list === 'object') list = _.values(list);
   if (list.length) {
     for (let i = 0; i < list.length; i++) {
-      iteratee(list[i], i, list);
+      iteratee.call(context, list[i], i, list);
     }
     return list;
   }

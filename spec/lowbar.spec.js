@@ -117,9 +117,6 @@ describe('lowbar', function () {
   });
 
   describe('_.each', function () {
-    it('is a function', function () {
-      expect(_.each).to.be.a('function');
-    });
     it('performs the iteratee action on each element in an array list', function () {
       let count = 0;
       const counter = () => count++;
@@ -145,6 +142,13 @@ describe('lowbar', function () {
     });
     it('requires an iteratee to pass', function () {
       expect(_.each([1, 2, 3])).to.equal(TypeError);
+    });
+    it('uses context if passed context argument', () => {
+      function addItem(item) {
+        this.push(item);
+      }
+      const newBasket = _.each(['banana', 'apple', 'kiwi'], addItem, []);
+      expect(newBasket.length).to.equal(3);
     });
   });
 
@@ -428,7 +432,7 @@ describe('lowbar', function () {
       expect(_.defaults({ flavour: 'chocolate', sprinkles: 'lots' }, { sprinkles: 'none' })).to.eql({ flavour: 'chocolate', sprinkles: 'lots' });
     });
     it('returns properties with the first object values as default', function () {
-      expect(_.defaults({ flavour: 'chocolate' }, { flavour: 'vanilla'})).to.eql({ flavour: 'chocolate' });
+      expect(_.defaults({ flavour: 'chocolate' }, { flavour: 'vanilla' })).to.eql({ flavour: 'chocolate' });
       expect(_.defaults({ flavour: 'chocolate' }, { sprinkles: 'lots', flavour: 'cherry' })).to.eql({ flavour: 'chocolate', sprinkles: 'lots' });
       expect(_.defaults({ flavour: 'chocolate', sprinkles: 'lots' }, { sprinkles: 'none' })).to.eql({ flavour: 'chocolate', sprinkles: 'lots' });
     });
