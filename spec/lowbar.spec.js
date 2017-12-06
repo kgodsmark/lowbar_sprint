@@ -452,4 +452,15 @@ describe('lowbar', function () {
     });
   });
 
+  describe('_.negate', function () {
+    it('returns a new negated version of the predicate', function () {
+      let isFalsy = _.negate(Boolean);
+      expect(isFalsy(false)).to.be.true;
+      expect(isFalsy(true)).to.be.false;
+    });
+    it('returns the function itself if no arguments passed', () => {
+      expect(_.negate()).to.be.a('function');
+    });
+  });
+
 });

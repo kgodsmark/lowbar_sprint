@@ -163,4 +163,10 @@ _.once = function (func) {
   };
 };
 
+_.negate = function (func) {
+  return function() {
+    return !func.apply(this, arguments);
+  };
+};
+
 module.exports = _;
