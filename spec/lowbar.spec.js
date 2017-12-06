@@ -273,6 +273,13 @@ describe('lowbar', function () {
       expect(_.map(2)).to.eql([]);
       expect(_.map(true)).to.eql([]);
     });
+    it('uses context if passed context argument', () => {
+      function addTo(item) {
+        return item + this;
+      }
+      const result = _.map([1, 2, 3], addTo, 3);
+      expect(result).to.eql([4, 5, 6]);
+    });
   });
 
   describe('_.contains', function () {

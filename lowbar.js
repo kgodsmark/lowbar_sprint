@@ -82,10 +82,10 @@ _.uniq = function (list, isSorted) {
   return uniqueList;
 };
 
-_.map = function (list, iteratee) {
+_.map = function (list, iteratee, context = this) {
   const mappedList = [];
   _.each(list, (item) => {
-    mappedList.push(iteratee(item));
+    mappedList.push(iteratee.call(context, item));
   });
   return mappedList;
 };
