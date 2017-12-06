@@ -128,9 +128,6 @@ describe('lowbar', function () {
       expect(_.each(5, counter)).to.equal(5);
       expect(_.each(true, counter)).to.equal(true);
     });
-    it('requires an iteratee to pass', function () {
-      expect(_.each([1, 2, 3])).to.equal(TypeError);
-    });
     it('uses context if passed context argument', () => {
       function addItem(item) {
         this.push(item);

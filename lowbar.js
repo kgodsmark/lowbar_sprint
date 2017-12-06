@@ -26,8 +26,7 @@ _.last = function (item, n) {
   if (item.length) return Array.isArray(item) ? item.slice(-n) : item.split('').slice(-n);
 };
 
-_.each = function (list, iteratee, context = this) {
-  if (!iteratee) return TypeError;
+_.each = function (list, iteratee = _.identity, context = this) {
   if (typeof list === 'object') list = _.values(list);
   if (list.length) {
     for (let i = 0; i < list.length; i++) {
@@ -52,7 +51,7 @@ _.indexOf = function (array, value, isSorted) {
   return -1;
 };
 
-_.filter = function (list, predicate, context = this) {
+_.filter = function (list, predicate = _.identity, context = this) {
   if (!predicate) return list;
   const filteredList = [];
   _.each(list, (item) => {
@@ -61,7 +60,7 @@ _.filter = function (list, predicate, context = this) {
   return filteredList;
 };
 
-_.reject = function (list, predicate, context = this) {
+_.reject = function (list, predicate = _.identity, context = this) {
   if (!predicate) return [];
   const filteredList = [];
   _.each(list, (item) => {
@@ -82,7 +81,7 @@ _.uniq = function (list, isSorted) {
   return uniqueList;
 };
 
-_.map = function (list, iteratee, context = this) {
+_.map = function (list, iteratee = _.identity, context = this) {
   const mappedList = [];
   _.each(list, (item) => {
     mappedList.push(iteratee.call(context, item));
@@ -100,7 +99,7 @@ _.pluck = function (list, propertyName) {
   return _.map(list, object => object[propertyName]);
 };
 
-_.reduce = function (list, iteratee, memo, context = this) {
+_.reduce = function (list, iteratee = _.identity, memo, context = this) {
   _.each(list, (item, i, list) => {
     if (memo === undefined) {
       memo = item;
@@ -109,7 +108,7 @@ _.reduce = function (list, iteratee, memo, context = this) {
   return memo;
 };
 
-_.every = function (list, predicate, context = this) {
+_.every = function (list, predicate = _.identity, context = this) {
   if (!predicate) return true;
   if (typeof list === 'object') list = _.values(list);
   if (list.length) {
