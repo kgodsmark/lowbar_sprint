@@ -193,6 +193,13 @@ describe('lowbar', function () {
     it('returns the original array if predicate is not present', function () {
       expect(_.filter(['h', 'h', 'p'])).to.eql(['h', 'h', 'p']);
     });
+    it('uses context if passed context argument', () => {
+      function isLessThan(num) {
+        return num < this;
+      }
+      const result = _.filter([1, 2, 3, 4, 5, 6], isLessThan, 3);
+      expect(result).to.eql([1,2]);
+    });
   });
 
   describe('_.reject', function () {

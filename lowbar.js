@@ -52,11 +52,11 @@ _.indexOf = function (array, value, isSorted) {
   return -1;
 };
 
-_.filter = function (list, predicate) {
+_.filter = function (list, predicate, context = this) {
   if (!predicate) return list;
   const filteredList = [];
   _.each(list, (item) => {
-    if (predicate(item)) filteredList.push(item);
+    if (predicate.call(context, item)) filteredList.push(item);
   });
   return filteredList;
 };
