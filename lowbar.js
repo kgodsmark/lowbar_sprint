@@ -188,5 +188,13 @@ _.invoke = function (list = [], method, ...args) {
   });
 };
 
+_.sortBy = function (list, iteratee, context = this) {
+  let sortedArray = [];
+  _.each(list, (item, i, list) => {
+    sortedArray.push(iteratee.call(context, item, i, list));
+  });
+  return sortedArray.sort((a, b) => b < a);
+};
+
 
 module.exports = _;

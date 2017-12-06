@@ -493,4 +493,13 @@ describe('lowbar', function () {
     });
   });
 
+  describe('_.sortBy', function () {
+    it('returns a thoroughly sorted list after passing each item through iteratee', function () {
+      const squareRt = num => Math.round(num);
+      expect(_.sortBy([3.6, 1.4, 2.3], squareRt)).to.eql([1, 2, 4]);
+      expect(_.sortBy({a:3.6, b:1.4, c:2.3}, squareRt)).to.eql([1, 2, 4]);
+    });
+
+  });
+
 });
