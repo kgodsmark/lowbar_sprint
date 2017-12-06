@@ -198,7 +198,7 @@ _.sortBy = function (list = [], iteratee, context = this) {
 };
 
 _.sortedIndex = function (list = [], value, iteratee = _.identity, context = this) {
-  return binaryInsertIndex(_.sortBy(list, iteratee), value);
+  return binaryInsertIndex(_.sortBy(list, iteratee.call(context)), value);
 
 };
 

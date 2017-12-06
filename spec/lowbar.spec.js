@@ -512,7 +512,7 @@ describe('lowbar', function () {
     });
   });
 
-  describe('_.sortedIndex', function () {
+  xdescribe('_.sortedIndex', function () {
     it('returns the index at which a value can be inserted into the list, maintaining order', function () {
       expect(_.sortedIndex([10, 20, 30, 40, 50], 35)).to.eql(3);
     });
