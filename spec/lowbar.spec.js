@@ -465,7 +465,31 @@ describe('lowbar', function () {
 
   describe('_.shuffle', function () {
     it('returns a shuffled copy of the list', function () {
+      let stringTest = 'will i shuffle';
+      let objTest = { a: 'hello', b: 'world' };
       expect(_.shuffle([1, 2, 3, 4, 5, 6])).to.not.eql([1, 2, 3, 4, 5, 6]);
+      expect(_.shuffle(stringTest)).to.not.eql(stringTest.split());
+      expect(_.shuffle(objTest)).to.not.equal(_.values(objTest));
+    });
+    it('returns an empty array if no list passed', () => {
+      expect(_.shuffle()).to.eql([]);
+      expect(_.shuffle([])).to.eql([]);
+      expect(_.shuffle({})).to.eql([]);
+    });
+    it('does not change the original list', () => {
+      let arrTest = [1, 2, 3, 4, 5, 6];
+      expect(_.shuffle(arrTest)).to.not.equal(arrTest);
+    });
+  });
+
+  describe('_.invoke', function () {
+    it('calls the method named by methodName on each value in the list', function () {
+      expect(_.invoke([[5, 1, 7], [3, 2, 1]], 'sort')).to.eql([[1, 5, 7], [1, 2, 3]]);
+    });
+    it('returns an empty array if no list passed', () => {
+      expect(_.invoke()).to.eql([]);
+      expect(_.invoke([])).to.eql([]);
+      expect(_.invoke({})).to.eql([]);
     });
   });
 

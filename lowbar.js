@@ -169,18 +169,24 @@ _.negate = function (func) {
   };
 };
 
-_.shuffle = function (list) {
+_.shuffle = function (list = []) {
+  const listArray = _.map(list);
   var locationA = 0, temp = null;
-
-  for (let i = list.length - 1; i > 0; i -= 1) {
+  for (let i = listArray.length - 1; i > 0; i -= 1) {
     locationA = Math.floor(Math.random() * (i + 1));
-    temp = list[i];
-    list[i] = list[locationA];
-    list[locationA] = temp;
+    temp = listArray[i];
+    listArray[i] = listArray[locationA];
+    listArray[locationA] = temp;
   }
-  return list;
-
-
+  return listArray;
 };
+
+_.invoke = function (list = [], method, ...args) {
+  return _.map(list, function(item) {
+    let func = (typeof method === 'function') ? method : item[method];
+    return func == null ? func : func.apply(item, args);    
+  });
+};
+
 
 module.exports = _;
