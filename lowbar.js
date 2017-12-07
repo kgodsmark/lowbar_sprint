@@ -189,7 +189,7 @@ _.invoke = function (list = [], method, ...args) {
   });
 };
 
-_.sortBy = function (list = [], iteratee, context = this) {
+_.sortBy = function (list = [], iteratee = _.identity, context = this) {
   let sortedArray = [];
   _.each(list, (item, i, list) => {
     sortedArray.push(iteratee.call(context, item, i, list));
@@ -197,9 +197,14 @@ _.sortBy = function (list = [], iteratee, context = this) {
   return sortedArray.sort((a, b) => b < a);
 };
 
-_.sortedIndex = function (list = [], value, iteratee = _.identity, context = this) {
-  return binaryInsertIndex(_.sortBy(list, iteratee.call(context)), value);
-
+_.sortedIndex = function (list = [], value, iteratee, context = this) {
+  if (list.length) {
+    if(typeof iteratee === 'string') {
+      return binaryInsertIndex(_.map(list, item => item[iteratee]), value[iteratee]);
+    } else if (typeof iteratee === 'function') {
+      return binaryInsertIndex(_.map(list, item => iteratee.call(context, item)), iteratee.call(context, value));
+    } else return binaryInsertIndex(list, value);
+  } return 0;
 };
 
 

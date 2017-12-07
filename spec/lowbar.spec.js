@@ -497,13 +497,13 @@ describe('lowbar', function () {
     it('returns a thoroughly sorted list after passing each item through iteratee', function () {
       const squareRt = num => Math.round(num);
       expect(_.sortBy([3.6, 1.4, 2.3], squareRt)).to.eql([1, 2, 4]);
-      expect(_.sortBy({a:3.6, b:1.4, c:2.3}, squareRt)).to.eql([1, 2, 4]);
+      expect(_.sortBy({ a: 3.6, b: 1.4, c: 2.3 }, squareRt)).to.eql([1, 2, 4]);
     });
     it('uses context if passed context argument', () => {
-      const addTwo = function(num) {
+      const addTwo = function (num) {
         return this + num;
       };
-      expect(_.sortBy([1,2,3], addTwo, 2)).to.eql([3,4,5]);
+      expect(_.sortBy([1, 2, 3], addTwo, 2)).to.eql([3, 4, 5]);
     });
     it('returns an empty array if no list passed', () => {
       expect(_.sortBy()).to.eql([]);
@@ -512,10 +512,26 @@ describe('lowbar', function () {
     });
   });
 
-  xdescribe('_.sortedIndex', function () {
+  describe('_.sortedIndex', function () {
     it('returns the index at which a value can be inserted into the list, maintaining order', function () {
       expect(_.sortedIndex([10, 20, 30, 40, 50], 35)).to.eql(3);
+      expect(_.sortedIndex([10, 20, 30, 40, 50], 25)).to.eql(2);
+      expect(_.sortedIndex('abd', 'c')).to.equal(2);
+      expect(_.sortedIndex([10, 20, 30, 40, 50], 55)).to.equal(5);
+      expect(_.sortedIndex('bcd', 'a')).to.equal(0);
     });
+    it('returns 0 if invalid list passed', function () {
+      expect(_.sortedIndex({})).to.equal(0);
+      expect(_.sortedIndex(1234)).to.equal(0);
+      expect(_.sortedIndex()).to.equal(0);
+    });
+    it('a string iteratee can compute the sort ranking of each key value', function () {
+      expect(_.sortedIndex([{ name: 'moe', age: 40 }, { name: 'curly', age: 60 }], { name: 'larry', age: 50 }, 'age')).to.eql(1);
+    });
+    it('a function iteratee can compute the sort ranking of each value', () => {
+      expect(_.sortedIndex(['h', 'he', 'hel', 'hell'], 'hello', item => item.length)).to.equal(4);
+    });
+    //not sure how to test for context here
   });
 
 });
