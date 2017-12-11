@@ -183,9 +183,9 @@ _.shuffle = function (list = []) {
 };
 
 _.invoke = function (list = [], method, ...args) {
-  return _.map(list, function(item) {
+  return _.map(list, function (item) {
     let func = (typeof method === 'function') ? method : item[method];
-    return func == null ? func : func.apply(item, args);    
+    return func == null ? func : func.apply(item, args);
   });
 };
 
@@ -199,12 +199,21 @@ _.sortBy = function (list = [], iteratee = _.identity, context = this) {
 
 _.sortedIndex = function (list = [], value, iteratee, context = this) {
   if (list.length) {
-    if(typeof iteratee === 'string') {
+    if (typeof iteratee === 'string') {
       return binaryInsertIndex(_.map(list, item => item[iteratee]), value[iteratee]);
     } else if (typeof iteratee === 'function') {
       return binaryInsertIndex(_.map(list, item => iteratee.call(context, item)), iteratee.call(context, value));
     } else return binaryInsertIndex(list, value);
   } return 0;
+};
+
+_.flatten = function (array) {
+  return _.reduce(array, (acc, item) => {
+    if (Array.isArray(item)) {
+      return _.flatten(acc.concat(item));
+    }
+    return acc.concat(item);
+  }, []);
 };
 
 

@@ -534,4 +534,10 @@ describe('lowbar', function () {
     //not sure how to test for context here
   });
 
+  describe('_.flatten', function () {
+    it('flattens a nested array to any depth', function () {
+      expect(_.flatten([1, [2], [3, [[4]]]])).to.eql([1, 2, 3, 4]);
+    });
+  });
+
 });
