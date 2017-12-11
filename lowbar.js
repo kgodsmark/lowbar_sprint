@@ -208,9 +208,8 @@ _.sortedIndex = function (list = [], value, iteratee, context = this) {
 };
 
 _.flatten = function (array, shallow) {
-  
   return _.reduce(array, (acc, item) => {
-    if(shallow)   return acc.concat(item);
+    if (shallow) return acc.concat(item);
     if (Array.isArray(item)) {
       return _.flatten(acc.concat(item));
     }
@@ -218,5 +217,15 @@ _.flatten = function (array, shallow) {
   }, []);
 };
 
+_.intersection = function (...array) {
+  return _.reduce(array[0], (acc, item) => {
+    if (_.every(array, (section) => {
+      return _.contains(section, item);
+    })) {
+      acc.push(item);
+    }
+    return acc;
+  }, []);
+};
 
 module.exports = _;

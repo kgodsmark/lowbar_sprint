@@ -551,10 +551,14 @@ describe('lowbar', function () {
       expect(_.flatten({})).to.eql([]);
       expect(_.flatten(1234)).to.eql([]);
     });
-    it('returns [] if invalid array passed', function () {
-      expect(_.flatten({})).to.eql([]);
-      expect(_.flatten(1234)).to.eql([]);
+  });
+
+  describe('_.intersection', function () {
+    it('returns the values present in each array', function () {
+      expect(_.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1])).to.eql([1, 2]);
+      expect(_.intersection(['a','b','c'], ['b','z'], ['b','c'])).to.eql(['b']);
     });
+
   });
 
 });
