@@ -207,8 +207,10 @@ _.sortedIndex = function (list = [], value, iteratee, context = this) {
   } return 0;
 };
 
-_.flatten = function (array) {
+_.flatten = function (array, shallow) {
+  
   return _.reduce(array, (acc, item) => {
+    if(shallow)   return acc.concat(item);
     if (Array.isArray(item)) {
       return _.flatten(acc.concat(item));
     }

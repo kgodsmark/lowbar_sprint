@@ -537,6 +537,23 @@ describe('lowbar', function () {
   describe('_.flatten', function () {
     it('flattens a nested array to any depth', function () {
       expect(_.flatten([1, [2], [3, [[4]]]])).to.eql([1, 2, 3, 4]);
+      expect(_.flatten([1, [2], [3, [[[[4]]]]]])).to.eql([1, 2, 3, 4]);
+      expect(_.flatten(['h', ['e'], ['l', [['l']]], 'o'])).to.eql(['h', 'e', 'l', 'l', 'o']);
+      expect(_.flatten(['h', {a:'e'}, ['l', [['l']]], 'o'])).to.eql(['h', {a: 'e'}, 'l', 'l', 'o']);
+    });
+    it('passing shallow puts the array to only one depth', function () {
+      expect(_.flatten([1, [2], [3, [[4]]]], true)).to.eql([1, 2, 3, [[4]]]);
+      expect(_.flatten([1, [2], [3, [[[[4]]]]]], true)).to.eql([1, 2, 3, [[[[4]]]]]);
+      expect(_.flatten([1, [2], [3, [[4]]]], false)).to.eql([1, 2, 3, 4]);
+      expect(_.flatten([1, [2], [3, [[[[4]]]]]], false)).to.eql([1, 2, 3, 4]);
+    });
+    it('returns [] if invalid array passed', function () {
+      expect(_.flatten({})).to.eql([]);
+      expect(_.flatten(1234)).to.eql([]);
+    });
+    it('returns [] if invalid array passed', function () {
+      expect(_.flatten({})).to.eql([]);
+      expect(_.flatten(1234)).to.eql([]);
     });
   });
 
