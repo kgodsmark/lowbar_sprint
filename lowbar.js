@@ -218,14 +218,16 @@ _.flatten = function (array, shallow) {
 };
 
 _.intersection = function (...array) {
-  return _.reduce(array[0], (acc, item) => {
-    if (_.every(array, (section) => {
-      return _.contains(section, item);
-    })) {
-      acc.push(item);
-    }
-    return acc;
-  }, []);
+  if (Array.isArray(array[0])) {
+    return _.reduce(array[0], (acc, item) => {
+      if (_.every(array, (section) => {
+        return _.contains(section, item);
+      })) {
+        acc.push(item);
+      }
+      return acc;
+    }, []);
+  } return [];
 };
 
 module.exports = _;

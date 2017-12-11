@@ -558,7 +558,11 @@ describe('lowbar', function () {
       expect(_.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1])).to.eql([1, 2]);
       expect(_.intersection(['a','b','c'], ['b','z'], ['b','c'])).to.eql(['b']);
     });
-
+    it('returns [] if arrays not passed and array of string', function () {
+      expect(_.intersection(1, 2, 3)).to.eql([]);
+      expect(_.intersection({a:'a',b:'b',c:'c'}, {a:'b',b:'z'}, {a:'b',b:'c'})).to.eql([]);
+      expect(_.intersection('a', 'b')).to.eql([]);
+    });
   });
 
 });
