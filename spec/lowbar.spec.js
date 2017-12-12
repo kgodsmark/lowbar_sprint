@@ -558,10 +558,27 @@ describe('lowbar', function () {
       expect(_.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1])).to.eql([1, 2]);
       expect(_.intersection(['a','b','c'], ['b','z'], ['b','c'])).to.eql(['b']);
     });
+    it('returns the first array when only one argument', function () {
+      expect(_.intersection([1, 2, 3])).to.eql([1, 2, 3]);
+      expect(_.intersection(['a','b','c'])).to.eql(['a','b', 'c']);
+    });
     it('returns [] if arrays not passed and array of string', function () {
       expect(_.intersection(1, 2, 3)).to.eql([]);
       expect(_.intersection({a:'a',b:'b',c:'c'}, {a:'b',b:'z'}, {a:'b',b:'c'})).to.eql([]);
       expect(_.intersection('a', 'b')).to.eql([]);
+    });
+  });
+
+  describe('_.difference', function () {
+    it('returns the values from the first array that are not present in the other arrays', function () {
+      expect(_.difference([1, 2, 3], [101, 2, 1, 10], [2, 1])).to.eql([3]);
+      expect(_.difference([1, 2, 3, 4, 5], [5, 2, 10])).to.eql([1, 3, 4]);
+      expect(_.difference(['a','b','c'], ['b','z'], ['b','c'])).to.eql(['a']);
+    });
+    it('returns [] if arrays not passed and array of string', function () {
+      expect(_.difference(1, 2, 3)).to.eql([]);
+      expect(_.difference({a:'a',b:'b',c:'c'}, {a:'b',b:'z'}, {a:'b',b:'c'})).to.eql([]);
+      expect(_.difference('a', 'b')).to.eql([]);
     });
   });
 

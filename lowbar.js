@@ -230,4 +230,16 @@ _.intersection = function (...array) {
   } return [];
 };
 
+_.difference = function (array, ...others) {
+  if (Array.isArray(array)) {
+    return _.reduce(array, (acc, item) => {
+      if (_.every(others, (section) => {
+        return !_.contains(section, item);
+      })) {
+        acc.push(item);
+      }
+      return acc;
+    }, []);
+  } return [];
+};
 module.exports = _;
