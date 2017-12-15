@@ -242,4 +242,19 @@ _.difference = function (array, ...others) {
     }, []);
   } return [];
 };
+
+_.memoize = function (func, hasher = _.identity) {
+  const cache = {};
+  function memoize(...args) {
+    let key = hasher ? hasher(...args) : JSON.stringify(args);
+    if (cache[key]) return cache[key];
+    else {
+      cache[key] = func(...args);
+      return cache[key];
+    }
+  }
+  memoize.cache = cache;
+  return memoize;
+};
+
 module.exports = _;

@@ -582,4 +582,17 @@ describe('lowbar', function () {
     });
   });
 
+  describe('_.memoize', function () {
+    it('caches the computed result of the function', function () {
+      var fibonacci = _.memoize(function(n) {
+        return n < 2 ? n: fibonacci(n - 1) + fibonacci(n - 2);
+      });
+      fibonacci(4);
+      expect(fibonacci.cache).to.eql({0: 0, 1: 1, 2: 1, 3: 2, 4: 3});
+    });
+    it('returns [] if arrays not passed and array of string', function () {
+
+    });
+  });
+
 });
