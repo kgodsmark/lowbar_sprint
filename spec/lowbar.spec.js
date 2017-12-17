@@ -687,20 +687,42 @@ describe('lowbar', function () {
       { title: 'The Tempest', author: 'Shakespeare', year: 1611 }]);
     });
   });
-  describe('_.throttle', () => {
-    var clock;
-    
-    before(function () { clock = sinon.useFakeTimers(); });
-    after(function () { clock.restore(); });
+  
+  xdescribe('_.throttle', () => {
+    let clock;
+    before(function () {
+      clock = sinon.useFakeTimers();
+    });
+    after(function () {
+      clock.restore();
+    });
 
     it('returns a throttled version of the passed array, waiting for the period to pass', () => {
-      let spy = sinon.spy();
-      let throttled = _.throttle(spy, 100); 
+      const spy = sinon.spy();
+      let throttled = _.throttle(spy, 100);
+      throttled();
+      throttled();
       throttled();
       clock.tick(99);
-      expect(spy.callCount).to.equal(0); 
+      expect(spy.callCount).to.equal(0);
       clock.tick(1);
       expect(spy.callCount).to.equal(1);
+    });
+    it('disables the leading edge call', () => {
+      const spy = sinon.spy();
+      let throttled = _.throttle(spy, 100, {leading: true});
+      throttled();
+      throttled();
+      throttled();
+      clock.tick(99);
+      expect(spy.callCount).to.equal(0);
+      clock.tick(1);
+      expect(spy.callCount).to.equal(1);
+      throttled();
+      throttled();
+      throttled();
+      clock.tick(201);
+      expect(spy.callCount).to.equal(2);
     });
   });
 

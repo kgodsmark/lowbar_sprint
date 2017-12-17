@@ -295,6 +295,7 @@ _.throttle = function (func, wait) {
       func.apply(this, args);
     }, wait);
   };
+
 };
 
 module.exports = _;
