@@ -197,6 +197,21 @@ _.sortBy = function (list = [], iteratee = _.identity, context = this) {
   return sortedArray.sort((a, b) => b < a);
 };
 
+_.zip = function () {
+  if (arguments[0]) {
+    let zipped = [];
+    let longest = _.sortBy(arguments, str => str.length)[arguments.length - 1];
+    for (let i = 0; i < arguments[longest - 1].length; i++) {
+      let innerArray = [];
+      for (let j = 0; j < longest; j++) {
+        innerArray.push(arguments[j][i]);
+      }
+      zipped.push(innerArray);
+    }
+    return zipped;
+  } return [];
+};
+
 _.sortedIndex = function (list = [], value, iteratee, context = this) {
   if (list.length) {
     if (typeof iteratee === 'string') {

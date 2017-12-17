@@ -512,6 +512,20 @@ describe('lowbar', function () {
     });
   });
 
+  describe('_.zip', function () {
+    it('returns the passed arrays merged into separate arrays according to their index', function () {
+      expect(_.zip(['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false])).to.eql([['moe', 30, true], ['larry', 40, false], ['curly', 50, false]]);
+    });
+    xit('returns an empty array if no list passed', () => {
+      expect(_.zip()).to.eql([]);
+      expect(_.zip([])).to.eql([]);
+      expect(_.zip({})).to.eql([]);
+    });
+    it('returns undefined in place of missing array index items', () => {
+      expect(_.zip(['moe', 'larry'], [30, 40, 50], [true, false, false])).to.eql([['moe', 30, true], ['larry', 40, false], [undefined, 50, false]]);
+    });
+  });
+
   describe('_.sortedIndex', function () {
     it('returns the index at which a value can be inserted into the list, maintaining order', function () {
       expect(_.sortedIndex([10, 20, 30, 40, 50], 35)).to.eql(3);
@@ -531,7 +545,7 @@ describe('lowbar', function () {
     it('a function iteratee can compute the sort ranking of each value', () => {
       expect(_.sortedIndex(['h', 'he', 'hel', 'hell'], 'hello', item => item.length)).to.equal(4);
     });
-    //not sure how to test for context here
+    //not sure how to test for context here as the above uses the length context anyway.
   });
 
   describe('_.flatten', function () {
@@ -646,9 +660,8 @@ describe('lowbar', function () {
       this.clock.tick(1);
       expect(spy).to.be.called;
       expect(spy.calledOnce).to.be.true;
-      expect(spy.calledWithExactly('hello','world')).to.be.true;
+      expect(spy.calledWithExactly('hello', 'world')).to.be.true;
     });
-
   });
 
 });
