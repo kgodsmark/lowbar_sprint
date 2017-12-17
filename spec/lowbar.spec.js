@@ -619,4 +619,25 @@ describe('lowbar', function () {
     });
   });
 
+  describe('_.delay', function () {
+    beforeEach(function () {   // Overwrite the global timer functions (setTimeout, setInterval) with Sinon fakes
+      this.clock = sinon.useFakeTimers();
+    });
+    afterEach(function () {   // Restore the global timer functions to their native implementations
+      this.clock.restore();
+    });
+
+    it('invokes the function after the passed waiting time', function () {
+      const spy = sinon.spy(console.log);
+      _.delay(spy, 2000);
+      this.clock.tick(1999);
+      expect(spy).to.not.be.called;
+      expect(spy.callCount).to.equal(0);
+      this.clock.tick(1);
+      expect(spy).to.be.called;
+      expect(spy.calledOnce).to.be.true;
+    });
+
+  });
+
 });
