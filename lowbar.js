@@ -258,8 +258,8 @@ _.memoize = function (func, hasher = _.identity) {
   return memoize;
 };
 
-_.delay = function (func, wait) {
-  return setTimeout(func, wait);
+_.delay = function (func, wait, ...args) {
+  return setTimeout(func, wait, ...args);
 };
 
 module.exports = _;

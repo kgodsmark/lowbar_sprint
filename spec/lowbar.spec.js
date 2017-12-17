@@ -637,6 +637,17 @@ describe('lowbar', function () {
       expect(spy).to.be.called;
       expect(spy.calledOnce).to.be.true;
     });
+    it('invokes the function with the passed arguments after the passed waiting time', function () {
+      const spy = sinon.spy(console.log);
+      _.delay(spy, 2000, 'hello', 'world');
+      this.clock.tick(1999);
+      expect(spy).to.not.be.called;
+      expect(spy.callCount).to.equal(0);
+      this.clock.tick(1);
+      expect(spy).to.be.called;
+      expect(spy.calledOnce).to.be.true;
+      expect(spy.calledWithExactly('hello','world')).to.be.true;
+    });
 
   });
 
