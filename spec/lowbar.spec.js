@@ -539,7 +539,7 @@ describe('lowbar', function () {
       expect(_.flatten([1, [2], [3, [[4]]]])).to.eql([1, 2, 3, 4]);
       expect(_.flatten([1, [2], [3, [[[[4]]]]]])).to.eql([1, 2, 3, 4]);
       expect(_.flatten(['h', ['e'], ['l', [['l']]], 'o'])).to.eql(['h', 'e', 'l', 'l', 'o']);
-      expect(_.flatten(['h', {a:'e'}, ['l', [['l']]], 'o'])).to.eql(['h', {a: 'e'}, 'l', 'l', 'o']);
+      expect(_.flatten(['h', { a: 'e' }, ['l', [['l']]], 'o'])).to.eql(['h', { a: 'e' }, 'l', 'l', 'o']);
     });
     it('passing shallow puts the array to only one depth', function () {
       expect(_.flatten([1, [2], [3, [[4]]]], true)).to.eql([1, 2, 3, [[4]]]);
@@ -556,15 +556,15 @@ describe('lowbar', function () {
   describe('_.intersection', function () {
     it('returns the values present in each array', function () {
       expect(_.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1])).to.eql([1, 2]);
-      expect(_.intersection(['a','b','c'], ['b','z'], ['b','c'])).to.eql(['b']);
+      expect(_.intersection(['a', 'b', 'c'], ['b', 'z'], ['b', 'c'])).to.eql(['b']);
     });
     it('returns the first array when only one argument', function () {
       expect(_.intersection([1, 2, 3])).to.eql([1, 2, 3]);
-      expect(_.intersection(['a','b','c'])).to.eql(['a','b', 'c']);
+      expect(_.intersection(['a', 'b', 'c'])).to.eql(['a', 'b', 'c']);
     });
     it('returns [] if arrays not passed and array of string', function () {
       expect(_.intersection(1, 2, 3)).to.eql([]);
-      expect(_.intersection({a:'a',b:'b',c:'c'}, {a:'b',b:'z'}, {a:'b',b:'c'})).to.eql([]);
+      expect(_.intersection({ a: 'a', b: 'b', c: 'c' }, { a: 'b', b: 'z' }, { a: 'b', b: 'c' })).to.eql([]);
       expect(_.intersection('a', 'b')).to.eql([]);
     });
   });
@@ -573,25 +573,49 @@ describe('lowbar', function () {
     it('returns the values from the first array that are not present in the other arrays', function () {
       expect(_.difference([1, 2, 3], [101, 2, 1, 10], [2, 1])).to.eql([3]);
       expect(_.difference([1, 2, 3, 4, 5], [5, 2, 10])).to.eql([1, 3, 4]);
-      expect(_.difference(['a','b','c'], ['b','z'], ['b','c'])).to.eql(['a']);
+      expect(_.difference(['a', 'b', 'c'], ['b', 'z'], ['b', 'c'])).to.eql(['a']);
     });
     it('returns [] if arrays not passed and array of string', function () {
       expect(_.difference(1, 2, 3)).to.eql([]);
-      expect(_.difference({a:'a',b:'b',c:'c'}, {a:'b',b:'z'}, {a:'b',b:'c'})).to.eql([]);
+      expect(_.difference({ a: 'a', b: 'b', c: 'c' }, { a: 'b', b: 'z' }, { a: 'b', b: 'c' })).to.eql([]);
       expect(_.difference('a', 'b')).to.eql([]);
     });
   });
 
   describe('_.memoize', function () {
     it('caches the computed result of the function', function () {
-      var fibonacci = _.memoize(function(n) {
-        return n < 2 ? n: fibonacci(n - 1) + fibonacci(n - 2);
+      var fibonacci = _.memoize(function (n) {
+        return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
       });
       fibonacci(4);
-      expect(fibonacci.cache).to.eql({0: 0, 1: 1, 2: 1, 3: 2, 4: 3});
+      expect(fibonacci.cache).to.eql({ 0: 0, 1: 1, 2: 1, 3: 2, 4: 3 });
     });
-    it('returns [] if arrays not passed and array of string', function () {
-
+    it('returns the inner function if no function is passed', function () {
+      expect(_.memoize(1, 2)).to.be.a('function');
+      expect(_.memoize()).to.be.a('function');
+    });
+    it('if passed the same argument, only runs once and returns from the cache', () => {
+      function fibonacci(n) {
+        return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
+      }
+      const spy = sinon.spy(fibonacci);
+      const memoizeSpy = _.memoize(spy);
+      memoizeSpy(4);
+      memoizeSpy(4);
+      expect(spy.callCount).to.equal(1);
+      expect(memoizeSpy.cache).to.eql({ '4': 3 });
+    });
+    it('when using a hasher, the cache keys are renamed', () => {
+      function fibonacci(n) {
+        return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
+      }
+      function hasher() {
+        return 'A';
+      }
+      const spy = sinon.spy(fibonacci);
+      const memoizeSpy = _.memoize(spy, hasher);
+      memoizeSpy(4);
+      expect(memoizeSpy.cache).to.eql({ 'A': 3 });
     });
   });
 

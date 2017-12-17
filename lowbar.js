@@ -245,16 +245,21 @@ _.difference = function (array, ...others) {
 
 _.memoize = function (func, hasher = _.identity) {
   const cache = {};
-  function memoize(...args) {
-    let key = hasher ? hasher(...args) : JSON.stringify(args);
+
+  function memoize() {
+    let key = hasher(arguments[0]);
     if (cache[key]) return cache[key];
     else {
-      cache[key] = func(...args);
+      cache[key] = func.apply(null, arguments);
       return cache[key];
     }
   }
   memoize.cache = cache;
   return memoize;
+};
+
+_.delay = function () {
+
 };
 
 module.exports = _;
