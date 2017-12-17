@@ -198,18 +198,16 @@ _.sortBy = function (list = [], iteratee = _.identity, context = this) {
 };
 
 _.zip = function () {
-  if (arguments[0]) {
-    let zipped = [];
-    let longest = _.sortBy(arguments, str => str.length)[arguments.length - 1];
-    for (let i = 0; i < arguments[longest - 1].length; i++) {
-      let innerArray = [];
-      for (let j = 0; j < longest; j++) {
-        innerArray.push(arguments[j][i]);
-      }
-      zipped.push(innerArray);
+  let zipped = [];
+  let longest = _.sortBy(arguments, str => str.length)[arguments.length - 1];
+  for (let i = 0; i < arguments[longest - 1].length; i++) {
+    let innerArray = [];
+    for (let j = 0; j < longest; j++) {
+      innerArray.push(arguments[j][i]);
     }
-    return zipped;
-  } return [];
+    zipped.push(innerArray);
+  }
+  return zipped;
 };
 
 _.sortedIndex = function (list = [], value, iteratee, context = this) {
@@ -275,6 +273,17 @@ _.memoize = function (func, hasher = _.identity) {
 
 _.delay = function (func, wait, ...args) {
   return setTimeout(func, wait, ...args);
+};
+
+_.where = function (list, properties) {
+  return _.filter(list, item => {
+    let included = true;
+    for (let key in properties) {
+      if (item[key] !== properties[key]) included = false;
+    }
+    return included;
+  });
+
 };
 
 module.exports = _;

@@ -516,11 +516,6 @@ describe('lowbar', function () {
     it('returns the passed arrays merged into separate arrays according to their index', function () {
       expect(_.zip(['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false])).to.eql([['moe', 30, true], ['larry', 40, false], ['curly', 50, false]]);
     });
-    xit('returns an empty array if no list passed', () => {
-      expect(_.zip()).to.eql([]);
-      expect(_.zip([])).to.eql([]);
-      expect(_.zip({})).to.eql([]);
-    });
     it('returns undefined in place of missing array index items', () => {
       expect(_.zip(['moe', 'larry'], [30, 40, 50], [true, false, false])).to.eql([['moe', 30, true], ['larry', 40, false], [undefined, 50, false]]);
     });
@@ -661,6 +656,35 @@ describe('lowbar', function () {
       expect(spy).to.be.called;
       expect(spy.calledOnce).to.be.true;
       expect(spy.calledWithExactly('hello', 'world')).to.be.true;
+    });
+  });
+
+  describe('_.where', () => {
+    it('returns an array of all the values that contain all of the key-value pairs listed in properties', () => {
+      const listOfPlays = [
+        {
+          title: 'Cymbeline',
+          author: 'Shakespeare',
+          year: 1611
+        },
+        {
+          title: 'The Tempest',
+          author: 'Shakespeare',
+          year: 1611
+        },
+        {
+          title: 'another',
+          author: 'Shakespeare',
+          year: 1600
+        },
+        {
+          title: 'more others',
+          author: 'Shakespeare',
+          year: 1615
+        }];
+
+      expect(_.where(listOfPlays, { author: 'Shakespeare', year: 1611 })).to.eql([{ title: 'Cymbeline', author: 'Shakespeare', year: 1611 },
+      { title: 'The Tempest', author: 'Shakespeare', year: 1611 }]);
     });
   });
 
