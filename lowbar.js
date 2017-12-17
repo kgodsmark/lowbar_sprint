@@ -276,14 +276,25 @@ _.delay = function (func, wait, ...args) {
 };
 
 _.where = function (list, properties) {
-  return _.filter(list, item => {
-    let included = true;
+  return _.filter(list, obj => {
+    let truthy;
     for (let key in properties) {
-      if (item[key] !== properties[key]) included = false;
-    }
-    return included;
-  });
+      truthy = (obj[key] === properties[key]);
 
+    }
+    return truthy;
+  });
+};
+
+_.throttle = function (func, wait) {
+  let timer;
+  return function () {
+    clearTimeout(timer);
+    let args = [].slice.call(arguments);
+    timer = setTimeout(function () {
+      func.apply(this, args);
+    }, wait);
+  };
 };
 
 module.exports = _;

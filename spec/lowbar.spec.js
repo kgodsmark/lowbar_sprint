@@ -679,12 +679,28 @@ describe('lowbar', function () {
         },
         {
           title: 'more others',
-          author: 'Shakespeare',
+          author: 'Another Author',
           year: 1615
         }];
 
       expect(_.where(listOfPlays, { author: 'Shakespeare', year: 1611 })).to.eql([{ title: 'Cymbeline', author: 'Shakespeare', year: 1611 },
       { title: 'The Tempest', author: 'Shakespeare', year: 1611 }]);
+    });
+  });
+  describe('_.throttle', () => {
+    var clock;
+    
+    before(function () { clock = sinon.useFakeTimers(); });
+    after(function () { clock.restore(); });
+
+    it('returns a throttled version of the passed array, waiting for the period to pass', () => {
+      let spy = sinon.spy();
+      let throttled = _.throttle(spy, 100); 
+      throttled();
+      clock.tick(99);
+      expect(spy.callCount).to.equal(0); 
+      clock.tick(1);
+      expect(spy.callCount).to.equal(1);
     });
   });
 
